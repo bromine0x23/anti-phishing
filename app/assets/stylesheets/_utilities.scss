@@ -1,0 +1,65 @@
+@mixin spacing-helper($size, $property) {
+	$value: if(type-of($size) == 'number', $grid-gutter-width * $size, auto);
+	@each $side in left, right, top, bottom {
+		.#{$property}-#{str-slice($side, 1, 1)}-#{$size} {
+			#{$property}-#{$side}: $value !important;
+		}
+	}
+	@each $join, $sides in (x, (l, r)), (y, (t, b)), (a, (x, y)) {
+		.#{$property}-#{$join}-#{$size} {
+			@each $side in $sides {
+				@extend .#{$property}-#{$side}-#{$size};
+			}
+		}
+	}
+}
+@for $size from 0 to 10 {
+	@include spacing-helper($size, 'margin');
+	@include spacing-helper($size, 'padding');
+}
+@include spacing-helper('auto', 'margin');
+
+@each $align in center, left, right {
+	.align-#{$align} {
+		text-align: $align !important;
+	}
+}
+@each $align in middle, top, bottom {
+	.align-#{$align} {
+		vertical-align: $align !important;
+	}
+}
+@each $align in middle, top, bottom {
+	.align-#{$align} {
+		vertical-align: $align !important;
+	}
+}
+@each $position in relative, absolute {
+	.position-#{$position} {
+		position: $position;
+	}
+}
+@for $percent from (100 / 5 + 1) through (300 / 5) {
+	.font-bigger-#{$percent * 5} {
+		font-size: $percent * 5%;
+	}
+}
+@for $percent from (20 / 5) to (100 / 5) {
+	.font-smaller-#{$percent * 5} {
+		font-size: $percent * 5%;
+	}
+}
+@for $percent from (20 / 5) through (100 / 5) {
+	.width-#{$percent * 5} {
+		width: $percent * 5% !important;
+	}
+}
+.height-auto {
+	height: auto !important;
+}
+.block {
+	display: block;
+}
+.inline-block {
+	display: inline-block !important;
+}

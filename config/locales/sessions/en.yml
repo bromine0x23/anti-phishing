@@ -1,0 +1,8 @@
+en:
+  sessions:
+    new:
+      username: 'Username'
+      username_placeholder: 'Please Input your username.'
+      password: 'Password'
+      password_placeholder: 'Please Input your password.'
+      sign_in: 'Sign in'

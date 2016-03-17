@@ -1,0 +1,6 @@
+.wrapper
+	= render 'index/index/header'
+	= render 'index/index/sidebar'
+	.content-wrapper.embed-responsive
+		%iframe#page-container.embed-responsive-item{ name: 'main' }
+	= render 'index/index/footer'

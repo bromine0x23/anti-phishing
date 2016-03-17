@@ -1,0 +1,15 @@
+!!! 5
+%html{lang: 'cmn-Hans-CN'}
+	%head
+		%title Anti-Phishing
+		= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
+		= stylesheet_link_tag 'frame', media: 'all', 'data-turbolinks-track' => true
+		= stylesheet_link_tag action_name, media: 'all', 'data-turbolinks-track' => true
+		= javascript_include_tag 'application', media: 'all', 'data-turbolinks-track' => true
+		= javascript_include_tag 'frame', 'data-turbolinks-track' => true
+		= javascript_include_tag action_name, 'data-turbolinks-track' => true
+		= csrf_meta_tags
+		%meta{ name: 'charset', content: 'UTF-8' }
+		%meta{ name: 'viewport', content: 'width=device-width, initial-scale=1' }
+	%body.body.skin-blue.sidebar-collapse.hold-transition
+		= yield

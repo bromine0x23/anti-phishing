@@ -1,0 +1,37 @@
+= form_for :index, url: reports_url, method: :get, remote: true, html: { id: 'index-form', class: 'form-inline' } do |form|
+	.form-group
+		#query-start-picker.input-group.date{ data: { current: 'max', min: '#query-end-picker' } }
+			= form.label :start_time, class: 'control-label sr-only' do
+				开始时间
+			= form.text_field :start_time, class: 'form-control', placeholder: '开始时间'
+			%span.input-group-addon
+				%span.fa.fa-calendar
+		#query-end-picker.input-group.date{ data: { current: 'max', max: '#query-start-picker' } }
+			= form.label :end_time, class: 'control-label sr-only' do
+				结束时间
+			= form.text_field :end_time , class: 'form-control', placeholder: '结束时间'
+			%span.input-group-addon
+				%span.fa.fa-calendar
+	.form-group
+		= form.label :status_id, class: 'control-label sr-only' do
+			状态
+		= form.collection_select :status_id, Status.all, :id, :name, { include_blank: true }, class: 'select2', data: { placeholder: '状态', 'allow-clear': 'true' }, style: 'width: 9em'
+	.form-group
+		= form.label :origin_id, class: 'control-label sr-only' do
+			来源
+		= form.collection_select :origin_id, Origin.all, :id, :name, { include_blank: true }, class: 'select2', data: { placeholder: '来源', 'allow-clear': 'true' }, style: 'width: 12em'
+	.form-group
+		%button#refresh.btn.btn-primary.btn-sm{ type: 'submit' }
+			%span.fa.fa-refresh
+			刷新
+		%button#refresh-control.btn.btn-danger.btn-sm.play{ type: 'button' }
+			%span.fa
+	.form-group.pull-right
+		- has_permission 'manual_entry' do
+			%button#import.btn.btn-info.btn-sm{ type: 'button', data: { toggle: 'modal', target: '#create-modal' } }
+				%span.fa.fa-upload
+				人工录入
+		- has_permission 'export_data' do
+			%button#export.btn.btn-info.btn-sm{ type: 'button' }
+				%span.fa.fa-download
+				导出数据

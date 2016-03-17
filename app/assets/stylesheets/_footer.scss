@@ -1,0 +1,27 @@
+.footer {
+	width: 100%;
+	height: $footer-height;
+	padding: $navbar-padding-vertical $navbar-padding-horizontal;
+	.brand-logo {
+		height: 20px;
+	}
+}
+.footer-default {
+	background-color: #f8f8f8;
+	color: #444444;
+	border-top: 1px solid #d2d6de;
+	opacity: 0.7;
+}
+
+.footer-static-bottom {
+	position: absolute;
+	bottom: 0;
+	z-index: $zindex-navbar;
+	border-width: 0 0 0 1px;
+}
+.footer-fixed-bottom {
+	position: fixed;
+	bottom: 0;
+	z-index: $zindex-navbar-fixed;
+	border-width: 0 0 0 1px;
+}

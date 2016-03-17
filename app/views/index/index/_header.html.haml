@@ -1,0 +1,25 @@
+%header.main-header
+	%a.logo{ href: '#' }
+		%span.logo-mini
+			= image_tag 'logo.svg', class: 'brand-logo', alt: '招商银行'
+		%span.logo-lg
+			= image_tag 'logo.svg', class: 'brand-logo', alt: '招商银行'
+			反钓鱼平台
+	%nav.navbar.navbar-static-top{ role: 'navigation' }
+		%a.sidebar-toggle{ href: '#', role: 'button', data: { toggle: 'offcanvas' } }
+			%span.sr-only
+				收展导航条
+		.navbar-custom-menu
+			%ul.nav.navbar-nav
+				%li
+					%a{ href: '#' }
+						%span.fa.fa-user
+						= @user.username
+				%li
+					%a{ href: '#' }
+						%span.fa.fa-toggle-up
+						值班
+				%li
+					= link_to sessions_url, method: 'delete' do
+						%span.fa.fa-sign-out
+						登出

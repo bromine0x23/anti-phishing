@@ -1,0 +1,8 @@
+zh-CN:
+  sessions:
+    new:
+      username: '用户名'
+      username_placeholder: '请输入用户名'
+      password: '密码'
+      password_placeholder: '请输入密码'
+      sign_in: '登录'

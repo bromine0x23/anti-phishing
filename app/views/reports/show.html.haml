@@ -1,0 +1,67 @@
+= form_for @report do |form|
+	.modal-header
+		%button.close{ type: 'button', data: { dismiss: 'modal' }, 'aria-label': '关闭' }
+			%span.fa.fa-times
+		%h4#show-modal-label.modal-title
+			详情
+	.modal-body
+		.row
+			.col-md-4
+				.row
+					.form-group.col-md-12
+						= form.label :url, class: 'control-label' do
+							URL
+						= form.text_field :url, class: 'form-control', readonly: true
+				.row
+					.form-group.col-md-12
+						= form.label :found_time, class: 'control-label' do
+							发现时间
+						= form.text_field :found_time, class: 'form-control', readonly: true
+				.row
+					.form-group.col-md-12
+						= form.label :report_time, class: 'control-label' do
+							报告时间
+						= form.text_field :report_time, class: 'form-control', readonly: true
+				.row
+					.form-group.col-md-12
+						= form.label :loss, class: 'control-label' do
+							损失金额
+						= form.text_field :loss, class: 'form-control', readonly: true
+				.row
+					.form-group.col-md-12
+						= form.label :region, class: 'control-label' do
+							所在地区
+						= form.text_field :region, class: 'form-control', readonly: true
+				.row
+					.form-group.col-md-6
+						= form.fields_for :origin, @report.origin do |origin_fields|
+							= origin_fields.label :name, class: 'control-label' do
+								来源
+							= origin_fields.text_field :name, class: 'form-control', readonly: true
+					.form-group.col-md-6
+						= form.fields_for :way, @report.way do |way_fields|
+							= way_fields.label :name, class: 'control-label' do
+								传播途径
+							= way_fields.text_field :name, class: 'form-control', readonly: true
+				.row
+					.form-group.col-md-6
+						= form.fields_for :system, @report.system do |system_fields|
+							= system_fields.label :name, class: 'control-label' do
+								操作系统
+							= system_fields.text_field :name, class: 'form-control', readonly: true
+					.form-group.col-md-6
+						= form.fields_for :browser, @report.browser do |browser_fields|
+							= browser_fields.label :name, class: 'control-label' do
+								浏览器
+							= browser_fields.text_field :name, class: 'form-control', readonly: true
+			.col-md-8
+				= image_tag report_screenshot_url(@report), id: 'show-screenshot', class: 'img-responsive img-thumbnail'
+	.modal-footer
+		%a.btn.btn-primary{ href: report_url(@report), data: { method: :put, remote: 'true', params: 'action=close' } }
+			上报关闭
+		%a.btn.btn-warning{ href: report_url(@report), data: { method: :put, remote: 'true', params: 'action=false' } }
+			误报
+		%a#show-screenshot-refresh.btn.btn-danger{ href: report_screenshot_url(@report), data: { method: :put, remote: 'true' } }
+			重载图片
+		%button.btn.btn-default{ type: 'button', data: { dismiss: 'modal' } }
+			返回

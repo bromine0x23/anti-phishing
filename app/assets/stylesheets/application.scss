@@ -1,0 +1,19 @@
+@import 'bootstrap-sprockets';
+@import 'bootstrap';
+@import "font-awesome-sprockets";
+@import "font-awesome";
+@import 'admin-lte';
+@import 'admin-lte-all-skins';
+@import 'variables';
+@import 'footer';
+@import 'utilities';
+
+img.brand-logo {
+	height: 32px;
+}
+
+footer {
+	img.brand-logo {
+		height: 20px;
+	}
+}
