@@ -5,18 +5,9 @@ class SessionsController < ApplicationController
 	skip_before_action :require_login
 
 	def create
-		user = User.find_by(username: params[:username], password: Digest::SHA512.hexdigest(params[:password]))
-		result =
-			if user
-				session[:user] = user
-				{ status: true }
-			else
-				{ status: false, message: translate('session.create.login_failed') }
-			end
-		respond_to do |format|
-			format.json { render json: result }
-			format.xml { render xml: result }
-		end
+		parameters = params.require(:create)
+		@user = User.find_by(username: parameters[:username], password: Digest::SHA512.hexdigest(parameters[:password]))
+		session[:user] = @user
 	end
 
 	def destroy

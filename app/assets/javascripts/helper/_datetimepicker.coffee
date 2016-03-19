@@ -1,5 +1,4 @@
-#= require moment/moment
-#= require moment/locale/zh-cn
+#= require helper/_moment
 #= require bootstrap3-datetimepicker
 do ($ = jQuery) -> $ ->
 	$('.date').datetimepicker

@@ -18,3 +18,5 @@
 
 # Ignore SASS cache
 /.sass-cache
+
+/.idea

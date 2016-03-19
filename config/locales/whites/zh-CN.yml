@@ -1,0 +1,8 @@
+zh-CN:
+  whites:
+    create:
+      success: '创建成功'
+      failed: '创建失败'
+    destroy:
+      success: '移除成功'
+      failed: '移除失败'

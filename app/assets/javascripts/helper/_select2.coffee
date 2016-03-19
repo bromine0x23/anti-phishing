@@ -6,6 +6,6 @@ do ($ = jQuery) -> $ ->
 		theme: 'bootstrap'
 	$(':reset').on 'click', (event) ->
 		event.preventDefault()
-		form = $(this).closest('form')
+		form = $(@).closest('form')
 		form.get(0).reset()
 		form.find('.select2').trigger('change')

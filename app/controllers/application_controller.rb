@@ -5,6 +5,18 @@ class ApplicationController < ActionController::Base
 
 	before_action :set_locale, :require_login
 
+	def body_class
+		''
+	end
+
+	def login_url
+		new_sessions_url
+	end
+
+	def current_user
+		session[:user]
+	end
+
 	private
 
 	def set_locale

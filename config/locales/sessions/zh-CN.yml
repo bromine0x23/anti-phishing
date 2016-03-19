@@ -6,3 +6,6 @@ zh-CN:
       password: '密码'
       password_placeholder: '请输入密码'
       sign_in: '登录'
+    create:
+      success: '登录成功'
+      failed: '账号或密码错误'

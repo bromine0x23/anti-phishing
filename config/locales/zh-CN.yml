@@ -1,5 +1,2 @@
 zh-CN:
   cmb: '招商银行'
-  session:
-    create:
-      login_failed: '账号或密码错误'

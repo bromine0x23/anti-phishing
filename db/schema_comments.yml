@@ -1,0 +1,70 @@
+---
+table_comments:
+  browsers: "操作系统类型"
+  origins: "数据来源"
+  reports: "报告"
+  roles: "角色"
+  statuses: "处理状态"
+  systems: "操作系统类型"
+  user_roles: "用户角色"
+  users: "用户"
+  ways: "传播方式"
+  whites: "白名单"
+column_comments:
+  browsers:
+    code: "内部引用代码"
+    name: "显示名字"
+    id: "操作系统类型"
+  origins:
+    code: "内部引用代码"
+    name: "显示名字"
+    id: "数据来源"
+  reports:
+    url: "钓鱼网站网址"
+    loss: "损失"
+    origin_id: "数据来源引用"
+    way_id: "传播方式引用"
+    system_id: "操作系统类型引用"
+    browser_id: "浏览器类型引用"
+    disposer_id: "处理人引用"
+    status_id: "状态引用"
+    found_time: "发现时间"
+    report_time: "报告时间"
+    dispose_time: "处理时间"
+    finish_time: "结束时间"
+    screenshot: "截图"
+    id: "报告"
+  roles:
+    code: "内部引用代码"
+    name: "显示名字"
+    remark: "备注"
+    id: "角色"
+  statuses:
+    code: "内部引用代码"
+    name: "显示名字"
+    remark: "备注"
+    id: "处理状态"
+  systems:
+    code: "内部引用代码"
+    name: "显示名字"
+    id: "操作系统类型"
+  user_roles:
+    user_id: "用户引用"
+    role_id: "角色引用"
+    id: "用户角色"
+  users:
+    username: "用户名"
+    password: "密码"
+    name: "姓名"
+    telephone: "电话"
+    email: "邮箱"
+    on_duty: "是否值班"
+    id: "用户"
+  ways:
+    code: "内部引用代码"
+    name: "显示名字"
+    id: "传播方式"
+  whites:
+    url: "网址"
+    disposer_id: "处理人"
+    id: "白名单"

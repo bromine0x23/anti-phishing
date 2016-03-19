@@ -1,0 +1,11 @@
+= form_for :create, url: whites_url, method: :post, remote: true, html: { id: 'create-form', class: 'form-inline' } do |form|
+	.form-group
+		= form.label :url, class: 'sr-only control-label' do
+			URL
+		= form.text_field :url, class: 'form-control', placeholder: 'URL: xxx.yyy.zzz', required: true, pattern: '(\w+\.)+\w+(/.*)?'
+	%button.btn.btn-primary{ type: 'submit' }
+		%span.fa.fa-upload
+		添加
+	%a#refresh-btn.btn.btn-info{ href: whites_url, rel: 'nofollow', role: 'button', data: { remote: 'true', method: :get } }
+		%span.fa.fa-refresh
+		刷新

@@ -1,9 +1,9 @@
-#create-modal.modal.fade{ role: 'dialog', 'aria-labelledby': 'create-modal-label', 'tabindex': -1 }
+#create-modal.modal.fade{ role: 'dialog', aria: { labelledby: 'create-modal-label' }, 'tabindex': -1 }
 	.modal-dialog{ role: 'document' }
 		.modal-content
 			= form_for :create, url: reports_url, method: :post, remote: true, html: { id: 'create-form', class: 'form-vertical' } do |form|
 				.modal-header
-					%button.close{ type: 'button', data: { dismiss: 'modal' }, 'aria-label': '关闭' }
+					%button.close{ type: 'button', data: { dismiss: 'modal' }, aria: { label: '关闭' } }
 						%span.fa.fa-times
 					%h4#create-modal-label.modal-title
 						%span.fa.fa-upload

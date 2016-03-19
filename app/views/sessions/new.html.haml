@@ -5,20 +5,22 @@
 				= image_tag 'logo.svg', class: 'brand-logo', alt: translate('cmb')
 				%span.h3.align-middle 反钓鱼网站平台
 			.panel-body
-				= form_tag sessions_url, id: 'login', method: :post, remote: true do
+				= form_for :create, url: sessions_url, method: :post, remote: true, html: { id: 'create-form' } do |form|
 					.form-group
-						= label_tag 'username', translate('.username'), class: 'control-label sr-only'
+						= form.label :username, class: 'control-label sr-only' do
+							= translate('.username')
 						.input-group
 							%span.input-group-addon
 								%span.fa.fa-user
 							- username = Rails.env == 'development' ? 'administrator' : nil
-							= text_field_tag 'username', username, id: 'username', class: 'form-control', placeholder: translate('.username_placeholder'), autocomplete: 'off', required: true
+							= form.text_field :username, class: 'form-control', value: username, placeholder: translate('.username_placeholder'), autocomplete: 'off', required: true
 					.form-group
-						= label_tag 'password', translate('.password'), class: 'control-label sr-only'
+						= form.label :password, class: 'control-label sr-only' do
+							= translate('.password')
 						.input-group
 							%span.input-group-addon
 								%span.fa.fa-key
 							- password = Rails.env == 'development' ? 'administrator' : nil
-							= password_field_tag 'password', password, id: 'password', class: 'form-control', placeholder: translate('.password_placeholder'), autocomplete: 'off', required: true
-					= submit_tag translate('.sign_in'), class: 'btn btn-primary btn-block'
+							= form.password_field :password, class: 'form-control', value: password, placeholder: translate('.password_placeholder'), autocomplete: 'off', required: true
+					= form.submit translate('.sign_in'), class: 'btn btn-primary btn-block'
 = render 'sessions/new/footer'

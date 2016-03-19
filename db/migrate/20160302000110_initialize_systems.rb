@@ -1,10 +1,11 @@
 class InitializeSystems < ActiveRecord::Migration
 	def up
 		System.create([
-			{ code: 'other', name: '其它' },
-			{ code: 'iOS', name: '苹果' },
-			{ code: 'Android', name: '安卓' },
+			{ code: 'iOS', name: '苹果iOS' },
+			{ code: 'android', name: '安卓' },
 			{ code: 'Windows', name: 'Windows' },
+			{ code: 'Linux', name: 'Linux' },
+			{ code: 'OSX', name: 'OSX' },
 		])
 	end
 

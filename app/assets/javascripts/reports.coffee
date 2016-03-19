@@ -37,15 +37,12 @@ do ($ = jQuery) -> $ ->
 			countingPause()
 		else
 			countingStart()
-	)
-
-	$('#refresh-control').click()
+	).click()
 
 	$('#refresh').click((event) ->
-		restart = false
-		if counting
+		restart = counting
+		if restart
 			countingPause()
-			restart = true
 		current = interval
 		if restart
 			countingStart()
@@ -53,29 +50,21 @@ do ($ = jQuery) -> $ ->
 			flushPrgressBar()
 	)
 
-	refresh_table = -> (data)
-	# nothing
 
-	$('#create').on 'ajax:success', (event, data, status, xhr) ->
+	$('#create-form').on 'ajax:success', (event, data, status, xhr) ->
 		if (data.status)
 			toastr.success(data.message)
 			$('#refresh').click()
-			$("#create-modal").modal('toggle')
+			$("#create-modal").modal('hide')
 		else
 			toastr.error(data.message)
-
-	$(document).on 'ajax:success', '#show-screenshot-refresh', (event, data, status, xhr) ->
-		console.log(@, arguments)
-		$('#show-screenshot').attr('src', "#{$('#show-screenshot').data('url')}?#{$.param t: Date.now()}")
 
 	idRender = (data, type, row, meta) ->
 		"""
 		<input type='checkbox' name='check' value='#{data}'>
 		"""
-
 	datetimeRender = (data, type, row, meta) ->
 		moment(data).format('YYYY-MM-DD HH:mm:ss')
-
 	detailRender = (data, type, row, meta) ->
 		"""
 		<a class="btn btn-danger btn-xs" href="#" data-toggle="modal" data-target="#show-modal" data-href="#{row.href}">详情</a>
@@ -86,6 +75,8 @@ do ($ = jQuery) -> $ ->
 		content.load($(event.relatedTarget).data('href'))
 		img = content.find('#show-screenshot')
 		img.data('url', img.attr('src'))
+	$(document).on 'ajax:success', '#show-screenshot-refresh', (event, data, status, xhr) ->
+		$('#show-screenshot').attr('src', "#{$('#show-screenshot').data('url')}?#{$.param t: Date.now()}")
 
 	$('#index-form').on 'ajax:success', (event, data, status, xhr) ->
 		$('#index-table').DataTable

@@ -9,7 +9,7 @@
 		#query-end-picker.input-group.date{ data: { current: 'max', max: '#query-start-picker' } }
 			= form.label :end_time, class: 'control-label sr-only' do
 				结束时间
-			= form.text_field :end_time , class: 'form-control', placeholder: '结束时间'
+			= form.text_field :end_time, class: 'form-control', placeholder: '结束时间'
 			%span.input-group-addon
 				%span.fa.fa-calendar
 	.form-group
@@ -21,17 +21,17 @@
 			来源
 		= form.collection_select :origin_id, Origin.all, :id, :name, { include_blank: true }, class: 'select2', data: { placeholder: '来源', 'allow-clear': 'true' }, style: 'width: 12em'
 	.form-group
-		%button#refresh.btn.btn-primary.btn-sm{ type: 'submit' }
+		%button#refresh.btn.btn-info.btn-sm{ type: 'submit' }
 			%span.fa.fa-refresh
 			刷新
 		%button#refresh-control.btn.btn-danger.btn-sm.play{ type: 'button' }
 			%span.fa
 	.form-group.pull-right
-		- has_permission 'manual_entry' do
-			%button#import.btn.btn-info.btn-sm{ type: 'button', data: { toggle: 'modal', target: '#create-modal' } }
+		- if can? :create, Report
+			%button#import.btn.btn-primary.btn-sm{ type: 'button', data: { toggle: 'modal', target: '#create-modal' } }
 				%span.fa.fa-upload
 				人工录入
-		- has_permission 'export_data' do
-			%button#export.btn.btn-info.btn-sm{ type: 'button' }
+		- if can? :export, Report
+			%button#export.btn.btn-primary.btn-sm{ type: 'button' }
 				%span.fa.fa-download
 				导出数据

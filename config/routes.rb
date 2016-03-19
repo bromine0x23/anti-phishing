@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
 	resource :frame, only: [] do
 		get 'reports'
+		get 'whites'
 		get 'users'
 	end
 
@@ -15,8 +16,7 @@ Rails.application.routes.draw do
 		resource :screenshot, only: %i(create new show update)
 	end
 
-	get 'status' => 'status#index'
+	resources :whites, except: :update
 
-	get 'origin' => 'origin#index'
-
+	resources :origins, only: :index
 end

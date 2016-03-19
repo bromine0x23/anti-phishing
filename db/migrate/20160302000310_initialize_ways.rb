@@ -1,7 +1,6 @@
 class InitializeWays < ActiveRecord::Migration
 	def up
 		Way.create([
-			{ code: 'other', name: '其他' },
 			{ code: 'pseudo-base', name: '伪基站' },
 			{ code: 'WeChat', name: '微信' },
 			{ code: 'QQ', name: 'QQ' },

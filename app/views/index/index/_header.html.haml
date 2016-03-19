@@ -16,9 +16,10 @@
 						%span.fa.fa-user
 						= @user.username
 				%li
-					%a{ href: '#' }
-						%span.fa.fa-toggle-up
-						值班
+					- if can? :work, User
+						%a{ href: '#' }
+							%span.fa.fa-toggle-up
+							值班
 				%li
 					= link_to sessions_url, method: 'delete' do
 						%span.fa.fa-sign-out

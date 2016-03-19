@@ -6,3 +6,6 @@ en:
       password: 'Password'
       password_placeholder: 'Please Input your password.'
       sign_in: 'Sign in'
+    create:
+      success: 'Login success.'
+      failed: 'The account with this password was not found.'

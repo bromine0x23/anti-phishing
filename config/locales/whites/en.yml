@@ -1,0 +1,8 @@
+en:
+  whites:
+    create:
+      success: 'Create success.'
+      failed: 'Create failed.'
+    destroy:
+      success: 'Remove success.'
+      failed: 'Remove failed.'

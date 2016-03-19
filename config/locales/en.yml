@@ -21,6 +21,6 @@
 
 en:
   cmb: 'China Merchants Bank'
-  session:
+  sessions:
     create:
       login_failed: 'The account with this password was not found.'

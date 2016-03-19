@@ -62,13 +62,17 @@ gem 'sucker_punch', '~> 2.0'
 
 gem 'imgkit'
 
+gem 'cancan'
+
+gem 'annotate'
+gem 'schema_comments'
+
 # assets
 gem 'bootstrap-sass', '~> 3.3'
 gem 'font-awesome-sass', '~> 4.5'
 gem 'jquery-datatables-rails', '~> 3.3'
 
 source 'http://rails-assets.org' do
-	gem 'rails-assets-jquery', require: false
 	gem 'rails-assets-bootstrap3-datetimepicker'
 	gem 'rails-assets-echarts', '~> 3.0.0'
 	gem 'rails-assets-iframe-resizer'
