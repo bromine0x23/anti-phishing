@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
 	skip_before_action :require_login
 
 	def create
-		parameters = params.require(:create)
+		parameters = params.require(:session)
 		@user = User.find_by(username: parameters[:username], password: Digest::SHA512.hexdigest(parameters[:password]))
 		session[:user] = @user
 	end

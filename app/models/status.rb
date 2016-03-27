@@ -22,8 +22,30 @@
 #   +---------+   |   +----------+   |   +----------+       +--------+
 #                 |                  |
 #                 |   +-------+      |   +----------+
-#                 +---> false |      +---> rejected |
+#                 +---> fault |      +---> rejected |
 #                     +-------+          +----------+
 
 class Status < ActiveRecord::Base
+
+	attr_readonly :code, :name, :remark
+
+	class << self
+		def pending;  find_by(code: :pending);  end
+		def reported; find_by(code: :reported); end
+		def fault;    find_by(code: :fault);    end
+		def accepted; find_by(code: :accepted); end
+		def rejected; find_by(code: :rejected); end
+		def closed;   find_by(code: :closed);   end
+	end
+
+	def pending?;   code == :pending;  end
+	def reported?;  code == :reported; end
+	def fault?;     code == :fault;    end
+	def accepted?;  code == :accepted; end
+	def rejected?;  code == :rejected; end
+	def closed?;    code == :closed;   end
+
+	def code
+		@code ||= read_attribute(:code).to_sym
+	end
 end

@@ -2,11 +2,10 @@
 	.container
 		= image_tag 'logo.svg', class: 'brand-logo pull-right', alt: translate('cmb')
 		%span.align-middle.text-muted
-			系统采用了HTML5和CSS3，推荐
-			= link_to 'support/Chrome.exe' do
-				%i.fa.fa-chrome.fa-lg
-				Chrome
-			，兼容
-			= link_to 'support/Firefox.exe' do
-				%i.fa.fa-firefox.fa-lg
-				Firefox
+			- chrome = link_to 'support/Chrome.exe' do
+				%span.fa.fa-chrome
+					= translate 'chrome'
+			- firefox = link_to 'support/Firefox.exe' do
+				%span.fa.fa-firefox
+					= translate 'firefox'
+			!= translate('sessions.new.footer') % { chrome: chrome, firefox: firefox }

@@ -12,4 +12,9 @@
 #
 
 class Browser < ActiveRecord::Base
+	attr_readonly :code, :name
+
+	def code
+		@code ||= read_attribute(:code).to_sym
+	end
 end

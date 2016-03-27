@@ -1,26 +1,17 @@
-.container.padding-t-4.padding-b-1#login-box
+.container.padding-t-4.padding-b-1
 	.col-md-4.col-md-offset-4
 		.panel.panel-primary
 			.panel-heading
 				= image_tag 'logo.svg', class: 'brand-logo', alt: translate('cmb')
-				%span.h3.align-middle 反钓鱼网站平台
+				%span.h3.align-middle
+					= translate 'product'
 			.panel-body
-				= form_for :create, url: sessions_url, method: :post, remote: true, html: { id: 'create-form' } do |form|
-					.form-group
-						= form.label :username, class: 'control-label sr-only' do
-							= translate('.username')
-						.input-group
-							%span.input-group-addon
-								%span.fa.fa-user
-							- username = Rails.env == 'development' ? 'administrator' : nil
-							= form.text_field :username, class: 'form-control', value: username, placeholder: translate('.username_placeholder'), autocomplete: 'off', required: true
-					.form-group
-						= form.label :password, class: 'control-label sr-only' do
-							= translate('.password')
-						.input-group
-							%span.input-group-addon
-								%span.fa.fa-key
-							- password = Rails.env == 'development' ? 'administrator' : nil
-							= form.password_field :password, class: 'form-control', value: password, placeholder: translate('.password_placeholder'), autocomplete: 'off', required: true
-					= form.submit translate('.sign_in'), class: 'btn btn-primary btn-block'
+				= simple_form_for :session, url: sessions_url, method: :post, remote: true, wrapper: :inline_form, html: { id: 'create-session-form' } do |form|
+					- username = Rails.env == 'development' ? 'administrator' : nil
+					= form.input :username, input_html: { value: username, autocomplete: 'off' }
+					- password = Rails.env == 'development' ? 'administrator' : nil
+					= form.input :password, input_html: { value: password, autocomplete: 'off' }
+					%button.btn.btn-block.btn-primary{ type: 'submit' }
+						= translate 'sessions.new.submit'
+				= link_to '', root_url, id: 'submit-success', class: 'hidden'
 = render 'sessions/new/footer'

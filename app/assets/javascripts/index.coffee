@@ -1,9 +1,12 @@
 #= require iframe-resizer/iframeResizer
+#= require helper/_toastr
 do ($ = jQuery) -> $ ->
 	$('#page-container').iFrameResize
-		checkOrigin: false,
+		checkOrigin: false
 		scrolling: true
-	# $('iframe').each (_, iframe) ->
-		# console.log(this, _, iframe)
-		# console.log($('[data-deafult=true]'))
-	# $('[data-deafult]')
+	do ->
+		toggleSelector = $.AdminLTE.options.sidebarToggleSelector
+		key = 'anti-phishing/index#sidebar-collapse'
+		$(toggleSelector).trigger('click') if JSON.parse(localStorage.getItem(key))
+		$(toggleSelector).on 'click', (event) ->
+			localStorage.setItem(key, JSON.stringify($('body').hasClass('sidebar-collapse')))

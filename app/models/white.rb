@@ -19,6 +19,12 @@
 #
 
 class White < ActiveRecord::Base
-	validates :url, format: /(\w+\.)+\w+(\\.*)?/i
 	belongs_to :disposer, class_name: 'User'
+
+	attr_readonly :url, :disposer
+
+	scope :matched, ->(host) { where("? REGEXP concat(url, '$')", host) }
+
+	validates :url, uniqueness: true, format: /(?:(?:[-0-9A-Za-z]|%\h\h)+\.)+(?:[-0-9A-Za-z]|%\h\h)+/
+	validates :disposer, presence: true
 end

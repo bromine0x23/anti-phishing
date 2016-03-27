@@ -1,0 +1,82 @@
+zh-CN:
+  activerecord:
+    models:
+      report: '钓鱼网站报告'
+      white: '白名单'
+    attributes:
+      origin:
+        name: '来源'
+      way:
+        name: '传播途径'
+      system:
+        name: '操作系统'
+      browser:
+        name: '浏览器'
+      status:
+        name: '状态'
+      disposer:
+        name: '负责人'
+      report:
+        url: 'URL'
+        loss: '损失金额'
+        region: '所在地区'
+        origin_id: '来源'
+        way_id: '传播途径'
+        system_id: '操作系统'
+        browser_id: '浏览器'
+        disposer_id: '负责人'
+        status_id: '状态'
+        found_time: '发现时间'
+        report_time: '报告时间'
+        dispose_time: '处理时间'
+        finish_time: '完成时间'
+        screenshot: '截图'
+      white:
+        url: 'URL'
+        disposer_id: '处理人'
+    errors:
+      models:
+        report:
+          attributes:
+            url:
+              blank: '网址不能为空'
+              invalid: '网址非法'
+              duplicate: '网址已录入'
+              white: '网址已在白名单中'
+            status:
+              blank: '状态不能为空'
+            origin:
+              blank: '来源不能为空'
+            disposer:
+              blank: '负责人不能为空'
+            found_time:
+              blank: '发现时间不能为空'
+            report_time:
+              blank: '报告时间不能为空'
+        white:
+          attributes:
+            url:
+              taken: '网址已被加入白名单'
+      messages:
+        inclusion: '不包含于列表中'
+        exclusion: '是保留关键字'
+        invalid: '是无效的'
+        confirmation: '与确认值不匹配'
+        accepted: '必须是可被接受的'
+        empty: '不能留空'
+        blank: '不能为空字符'
+        too_long: '过长（最长为 %{count} 个字符）'
+        too_short: '过短（最短为 %{count} 个字符）'
+        wrong_length: '长度非法（必须为 %{count} 个字符）'
+        taken: '已经被使用'
+        not_a_number: '不是数字'
+        not_an_integer: '必须是整数'
+        greater_than: '必须大于 %{count}'
+        greater_than_or_equal_to: '必须大于或等于 %{count}'
+        equal_to: '必须等于 %{count}'
+        less_than: '必须小于 %{count}'
+        less_than_or_equal_to: '必须小于或等于 %{count}'
+        odd: '必须为单数'
+        even: '必须为双数'
+        record_invalid: "校验失败: %{errors}"
+        validations: '校验失败 - %{errors}.'

@@ -1,7 +1,7 @@
 #= require dataTables/jquery.dataTables
 #= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
 do ($ = jQuery) ->
-	$.extend true, $.fn.dataTable.defaults, oLanguage:
+	$.extend true, $.fn.dataTable.defaults.oLanguage,
 		sEmptyTable: '没有数据'
 		sInfo: '显示 _START_ 到 _END_ 条记录，共 _TOTAL_ 条记录'
 		sInfoEmpty: '显示 0 到 0 条记录，共 0 条记录'

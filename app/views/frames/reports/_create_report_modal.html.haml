@@ -1,0 +1,37 @@
+#create-report-modal.modal.fade{ role: 'dialog', aria: { labelledby: 'create-report-modal-label' }, tabindex: -1 }
+	.modal-dialog{ role: 'document' }
+		.modal-content
+			= simple_form_for :'report[create]', url: reports_url, method: :post, remote: true, wrapper: :vertical_form, html: { id: 'create-form', class: 'form-vertical' }, defaults: { required: false } do |form|
+				.modal-header
+					%button.close{ type: 'button', data: { dismiss: 'modal' }, aria: { label: translate('modal.close') } }
+						%span.fa.fa-times
+					%h4#create-report-modal-label.modal-title
+						%span.fa.fa-upload
+							= translate 'frames.reports.create.title'
+				.modal-body
+					.row
+						.col-md-12
+							= form.input :url, required: true, pattern: '(https?://)(([-a-zA-Z0-9]|%[0-9A-Fa-f]{2})+\.)+([-a-zA-Z0-9]|%[0-9A-Fa-f]{2})+(/?)'
+					.row
+						.col-md-6
+							= form.input :loss
+						.col-md-6
+							= form.input :region
+					- form.with_options as: :select2, wrapper: :vertical_select2 do |f|
+						.row
+							.col-md-6
+								= f.input :origin_id, collection: Origin.all, selected: Origin.staff.id, required: true
+							.col-md-6
+								= f.input :way_id, collection: Way.all
+						.row
+							.col-md-6
+								= f.input :system_id, collection: System.all
+							.col-md-6
+								= f.input :browser_id, collection: Browser.all
+				.modal-footer
+					%button.btn.btn-primary{ type: 'submit' }
+						= translate 'frames.reports.create.submit'
+					%button.btn.btn-danger{ type: 'reset' }
+						= translate 'reset'
+					%button.btn.btn-default{ type: 'button', data: { dismiss: 'modal' } }
+						= translate 'modal.close'

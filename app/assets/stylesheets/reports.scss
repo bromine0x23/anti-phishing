@@ -3,26 +3,33 @@
 @import 'helper/select2_';
 @import 'helper/datetimepicker_';
 @import 'iCheck/skins/square/all';
-
-#progress-bar {
+@import 'helper/toastr_';
+#index-report-progress-bar {
 	min-width: 15ex;
 }
-
-#refresh-control {
+#refresh-control-btn {
 	&.start {
 		.fa:before {
 			content: $fa-var-play;
-		}
-		&:after {
-			content: '启动';
 		}
 	}
 	&.pause {
 		.fa:before {
 			content: $fa-var-pause;
 		}
-		&:after {
-			content: '暂停';
-		}
 	}
+}
+html[lang=zh-CN] {
+	#refresh-control-btn {
+		&.start {
+			&:after {
+				content: '启动';
+			 }
+		 }
+		&.pause {
+			&:after {
+				content: '暂停';
+			}
+		  }
+	 }
 }

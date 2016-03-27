@@ -1,67 +1,63 @@
-= form_for @report do |form|
+- screenshot_url = report_screenshot_url(@report)
+= simple_form_for @report, wrapper: 'vertical_form', defaults: { required: false } do |form|
 	.modal-header
-		%button.close{ type: 'button', data: { dismiss: 'modal' }, 'aria-label': '关闭' }
+		%button.close{ type: 'button', data: { dismiss: 'modal' }, aria: { label: translate('modal.close') } }
 			%span.fa.fa-times
-		%h4#show-modal-label.modal-title
-			详情
+		%h4#show-report-modal-label.modal-title
+			= translate 'reports.show.detail'
+			%a{ href: @report.url, target: '_blank' }
+				= @report.url
 	.modal-body
 		.row
 			.col-md-4
 				.row
-					.form-group.col-md-12
-						= form.label :url, class: 'control-label' do
-							URL
-						= form.text_field :url, class: 'form-control', readonly: true
+					.col-md-12
+						= form.input :url, readonly: true
 				.row
-					.form-group.col-md-12
-						= form.label :found_time, class: 'control-label' do
-							发现时间
-						= form.text_field :found_time, class: 'form-control', readonly: true
+					.col-md-12
+						- value = @report.found_time
+						= form.input :found_time, as: :string, readonly: true, input_html: { value: I18n.localize(value, format: :long) }
 				.row
-					.form-group.col-md-12
-						= form.label :report_time, class: 'control-label' do
-							报告时间
-						= form.text_field :report_time, class: 'form-control', readonly: true
+					.col-md-12
+						- value = @report.found_time
+						= form.input :report_time, as: :string, readonly: true, input_html: { value: I18n.localize(value, format: :long) }
 				.row
-					.form-group.col-md-12
-						= form.label :loss, class: 'control-label' do
-							损失金额
-						= form.text_field :loss, class: 'form-control', readonly: true
+					.col-md-6
+						= form.input :loss, readonly: true
+					.col-md-6
+						= form.input :region, readonly: true
 				.row
-					.form-group.col-md-12
-						= form.label :region, class: 'control-label' do
-							所在地区
-						= form.text_field :region, class: 'form-control', readonly: true
+					.col-md-6
+						= form.simple_fields_for :origin do |fields|
+							= fields.input :name, readonly: true
+					.col-md-6
+						= form.simple_fields_for :way, @report.way || Way.new do |fields|
+							= fields.input :name, readonly: true
 				.row
-					.form-group.col-md-6
-						= form.fields_for :origin, @report.origin do |origin_fields|
-							= origin_fields.label :name, class: 'control-label' do
-								来源
-							= origin_fields.text_field :name, class: 'form-control', readonly: true
-					.form-group.col-md-6
-						= form.fields_for :way, @report.way do |way_fields|
-							= way_fields.label :name, class: 'control-label' do
-								传播途径
-							= way_fields.text_field :name, class: 'form-control', readonly: true
+					.col-md-6
+						= form.simple_fields_for :system, @report.system || System.new do |fields|
+							= fields.input :name, readonly: true
+					.col-md-6
+						= form.simple_fields_for :browser, @report.browser || Browser.new do |fields|
+							= fields.input :name, readonly: true
 				.row
-					.form-group.col-md-6
-						= form.fields_for :system, @report.system do |system_fields|
-							= system_fields.label :name, class: 'control-label' do
-								操作系统
-							= system_fields.text_field :name, class: 'form-control', readonly: true
-					.form-group.col-md-6
-						= form.fields_for :browser, @report.browser do |browser_fields|
-							= browser_fields.label :name, class: 'control-label' do
-								浏览器
-							= browser_fields.text_field :name, class: 'form-control', readonly: true
+					.col-md-6
+						= form.simple_fields_for :disposer do |fields|
+							= fields.input :name, readonly: true
+					.col-md-6
+						= form.simple_fields_for :status do |fields|
+							= fields.input :name, readonly: true
 			.col-md-8
-				= image_tag report_screenshot_url(@report), id: 'show-screenshot', class: 'img-responsive img-thumbnail'
+				= image_tag screenshot_url, id: 'show-screenshot', class: 'img-responsive img-thumbnail'
 	.modal-footer
-		%a.btn.btn-primary{ href: report_url(@report), data: { method: :put, remote: 'true', params: 'action=close' } }
-			上报关闭
-		%a.btn.btn-warning{ href: report_url(@report), data: { method: :put, remote: 'true', params: 'action=false' } }
-			误报
-		%a#show-screenshot-refresh.btn.btn-danger{ href: report_screenshot_url(@report), data: { method: :put, remote: 'true' } }
-			重载图片
+		- if @report.status.pending?
+			= link_to report_confirm_url(@report), method: :post, remote: true, class: 'confirm-report-btn btn btn-primary', role: 'button' do
+				= translate 'reports.show.confirm_report_btn'
+			= link_to report_ignore_url(@report), method: :post, remote: true, class: 'ignore-report-btn btn btn-danger', role: 'button' do
+				= translate 'reports.show.ignore_report_btn'
+			= link_to screenshot_url, method: :put, remote: true, id: 'update-screenshot-btn', class: 'btn btn-warning', role: 'button' do
+				= translate 'reports.show.update_screenshot_btn'
+			%a#create-screenshot-btn.btn.btn-warning{ role: 'button', href: new_report_screenshot_url(@report), data: { toggle: 'modal', target: '#create-screenshot-modal', url: screenshot_url } }
+				= translate 'reports.show.create_screenshot_btn'
 		%button.btn.btn-default{ type: 'button', data: { dismiss: 'modal' } }
-			返回
+			= translate 'modal.close'

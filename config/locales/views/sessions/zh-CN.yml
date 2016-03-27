@@ -1,0 +1,8 @@
+zh-CN:
+  sessions:
+    new:
+      submit: '登录'
+      footer: '系统采用了HTML5和CSS3，推荐 %{chrome}，兼容 %{firefox}'
+    create:
+      success: '登录成功'
+      failed: '账号或密码错误'

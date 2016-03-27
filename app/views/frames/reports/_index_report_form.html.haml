@@ -1,0 +1,25 @@
+= simple_form_for :'report[index]', url: reports_url, method: :get, remote: true, wrapper: :inline_form, html: { id: 'index-report-form', class: 'form-inline form-group-sm' }, defaults: { required: false } do |form|
+	.form-group.pull-right
+		- if can? :create, Report
+			%button.btn.btn-sm.btn-primary{ type: 'button', data: { toggle: 'modal', target: '#create-report-modal' } }
+				%span.fa.fa-upload
+				= translate 'frames.reports.import'
+		- if can? :export, Report
+			%button.btn.btn-sm.btn-primary{ type: 'button' }
+				%span.fa.fa-download
+				= translate 'frames.reports.export'
+	- form.with_options as: :date_time_picker, format: 'YYYY-MM-DD HH:mm:ss', current: 'max' do |f|
+		= f.input :start, id: 'index-start-picker', max: '#index-end-picker'
+		= f.input :end, id: 'index-end-picker', min: '#index-start-picker'
+	- form.with_options as: :select2 do |f|
+		= f.input :status_id, collection: Status.all, input_html: { style: 'width: 8em' }
+		= f.input :origin_id, collection: Origin.all, input_html: { style: 'width: 10em' }
+	.form-group
+		%button#refresh-btn.btn.btn-sm.btn-info{ type: 'submit' }
+			%span.fa.fa-refresh
+			= translate 'frames.reports.refresh'
+		%button.btn.btn-sm.btn-warning{ type: 'reset' }
+			%span.fa.fa-times
+			= translate 'reset'
+		%button#refresh-control-btn.btn.btn-sm.btn-danger.play{ type: 'button' }
+			%span.fa

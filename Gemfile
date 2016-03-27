@@ -1,5 +1,5 @@
 # source 'https://rubygems.org/'
-source 'http://gems.ruby-china.org'
+source 'http://gems.ruby-china.org/'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -51,7 +51,7 @@ group :development do
 	# Access an IRB console on exception pages or by using <%= console %> in views
 	gem 'web-console', '~> 2.0'
 
-	gem 'better_errors'
+	# gem 'better_errors'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -60,12 +60,22 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # ActiveJob backend
 gem 'sucker_punch', '~> 2.0'
 
+# Screenshot
 gem 'imgkit'
+gem 'mini_magick'
 
+# Permission
 gem 'cancan'
 
+#
 gem 'annotate'
 gem 'schema_comments'
+
+# Better Form Builder
+gem 'simple_form'
+
+# Receive mail
+gem 'mailman'
 
 # assets
 gem 'bootstrap-sass', '~> 3.3'
@@ -73,6 +83,7 @@ gem 'font-awesome-sass', '~> 4.5'
 gem 'jquery-datatables-rails', '~> 3.3'
 
 source 'http://rails-assets.org' do
+	gem 'rails-assets-bootbox'
 	gem 'rails-assets-bootstrap3-datetimepicker'
 	gem 'rails-assets-echarts', '~> 3.0.0'
 	gem 'rails-assets-iframe-resizer'

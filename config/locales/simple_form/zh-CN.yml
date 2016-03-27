@@ -1,0 +1,89 @@
+zh-CN:
+  simple_form:
+    yes: '是'
+    no: '否'
+    required:
+      text: '必填'
+      mark: '*'
+      # You can uncomment the line below if you need to overwrite the whole required html.
+      # When using html, text and mark won't be used.
+      # html: '<abbr title="required">*</abbr>'
+    labels:
+      defaults:
+        username: '用户名'
+        password: '密码'
+      report:
+        # create view
+        create:
+          url: 'URL'
+          loss: '损失金额'
+          region: '所在地区'
+          origin_id: '来源'
+          way_id: '传播途径'
+          system_id: '操作系统'
+          browser_id: '浏览器'
+        # index view
+        index:
+          start: '开始时间'
+          end: '结束时间'
+          origin_id: '来源'
+          status_id: '状态'
+      white:
+        create:
+          url: 'URL'
+    placeholders:
+      defaults:
+        username: '请输入用户名'
+        password: '请输入密码'
+      report:
+        url: 'URL'
+        loss: '损失金额'
+        region: '所在地区'
+        origin:
+          name: '来源'
+        way:
+          name: '传播途径'
+        system:
+          name: '操作系统'
+        browser:
+          name: '浏览器'
+        status:
+          name: '状态'
+        disposer:
+          name: '负责人'
+        # create view
+        create:
+          url: 'URL: http://xxx.yyy.zzz or https://xxx.yyy.zzz'
+          loss: '损失金额'
+          region: '所在地区'
+          origin_id: '来源'
+          way_id: '传播途径'
+          system_id: '操作系统'
+          browser_id: '浏览器'
+        # index view
+        index:
+          start: '请选择开始时间'
+          end: '请选择结束时间'
+          status_id: '请选择状态'
+          origin_id: '请选择来源'
+      white:
+        url: 'URL: xxx.yyy.zzz'
+    # Examples
+    # labels:
+    #   defaults:
+    #     password: 'Password'
+    #   user:
+    #     new:
+    #       email: 'E-mail to sign in.'
+    #     edit:
+    #       email: 'E-mail.'
+    # hints:
+    #   defaults:
+    #     username: 'User name to sign in.'
+    #     password: 'No special characters, please.'
+    # include_blanks:
+    #   defaults:
+    #     age: 'Rather not say'
+    # prompts:
+    #   defaults:
+    #     age: 'Select your age'

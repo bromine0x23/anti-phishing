@@ -6,31 +6,31 @@
 					= link_to reports_frame_url, target: 'main', class: 'nav-item' do
 						%i.fa.fa-desktop
 						%span
-							网站列表
+							= translate 'index.index.sidebar.report'
 			- if can? :check, Report
 				%li
 					%a.nav-item{ href: '#',  target: 'main' }
 						%i.fa.fa-bar-chart
 						%span
-							数据报表
+							= translate 'index.index.sidebar.chart'
 			- if can? :manage, White
 				%li
 					%a.nav-item{ href: whites_frame_url,  target: 'main' }
 						%i.fa.fa-list-ul
 						%span
-							白名单管理
+							= translate 'index.index.sidebar.white'
 			%li.treeview
 				%a.dropdown-toggle{ role: 'button', data: { toggle: 'dropdown' }, aria: { haspopup: true, expanded: false } }
 					%i.fa.fa-gear
 					%span
-						系统管理
+						= translate 'index.index.sidebar.manage'
 					%span.fa.fa-angle-left.pull-right
 				%ul.treeview-menu
 					- if can? :manage, User
 						%li
 							%a.nav-item{ href: users_frame_url, target: 'main' }
-								用户
+								= translate 'index.index.sidebar.user'
 					- if can? :manage, Role
 						%li
 							%a.nav-item{ href: '#', target:'main' }
-								角色
+								= translate 'index.index.sidebar.role'

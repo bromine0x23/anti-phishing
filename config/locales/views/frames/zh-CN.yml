@@ -1,0 +1,11 @@
+zh-CN:
+  frames:
+    reports:
+      import: '人工录入'
+      export: '导出报表'
+      refresh: '刷新'
+      index_result: '检索结果'
+      prograss_text: '自动刷新：{second} s'
+      create:
+        title: '人工录入'
+        submit: '录入'

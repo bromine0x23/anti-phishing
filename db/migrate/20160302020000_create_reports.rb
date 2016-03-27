@@ -12,7 +12,7 @@ class CreateReports < ActiveRecord::Migration
 			t.references :system, foreign_key: true, comment: '操作系统类型引用'
 			t.references :browser, foreign_key: true, comment: '浏览器类型引用'
 
-			t.integer :disposer_id, null: false, comment: '处理人引用'
+			t.integer :disposer_id, comment: '处理人引用'
 			t.foreign_key :users, column: :disposer_id
 
 			t.references :status, default: Status.find_by(code: 'pending'), foreign_key: true, null: false, comment: '状态引用'

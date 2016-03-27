@@ -1,18 +1,12 @@
+#= require helper/_bootbox
 #= require helper/_DataTables
 #= require helper/_moment
-#= require toastr
+#= require helper/multi-modal
 do ($ = jQuery) -> $ ->
-	$('#create-form').on 'ajax:success', (event, data, status, xhr) ->
-		if data.status
-			toastr.success(data.message)
-			$('#refresh-btn').click()
-		else
-			toastr.error(data.message)
-
+	# 白名单列表刷新回调
 	$('#refresh-btn').on 'ajax:success', (event, data, status, xhr) ->
-		$('#index-table').DataTable
+		$('#index-white-table').DataTable
 			data: data
-			autoWidth: false
 			deferRender: true
 			destroy: true
 			searching: false
@@ -22,28 +16,44 @@ do ($ = jQuery) -> $ ->
 					data: 'url'
 				}, {
 					data: 'disposer'
-					width: '20ex'
 				}, {
 					data: 'time'
-					width: '40ex'
 					render: (data, type, row, meta) ->
 						moment(data).format('YYYY-MM-DD HH:mm:ss')
 				},  {
 					data: null
-					width: '10ex'
 					render: (data, type, row, meta) ->
 						"""
-						<a class="btn btn-danger btn-xs white-destroy" href="#{row.href}" data-remote="true" data-method="delete"><span class="fa fa-trash"></span> 移除</a>
+						<a class="btn btn-danger btn-xs destroy-white-btn" href="#{row.href}" data-remote="true" data-method="delete">移除</a>
 						"""
 				}
 			]
 		event.stopPropagation()
 
-	$(document).on 'ajax:success', '.white-destroy', (event, data, status, xhr) ->
+	dislayMessage = (data) ->
 		if data.status
-			toastr.success(data.message)
+			bootbox.alert
+				message: data.message
+				size: 'small'
+				buttons:
+					ok:
+						className: 'btn-success'
 			$('#refresh-btn').click()
 		else
-			toastr.error(data.message)
+			bootbox.alert
+				message: data.message
+				size: 'small'
+				buttons:
+					ok:
+						className: 'btn-danger'
 
+	# 白名单添加和移除回显
+	$('#create-white-form').on 'ajax:success', (event, data, status, xhr) ->
+		dislayMessage(data)
+
+	# 白名单移除回显
+	$(document).on 'ajax:success', '.destroy-white-btn', (event, data, status, xhr) ->
+		dislayMessage(data)
+
+	# 初始刷新
 	$('#refresh-btn').click()

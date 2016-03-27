@@ -1,11 +1,16 @@
 .wrapper
 	.content-wrapper
+		%section.content-header
+			%h1
+				白名单
 		%section.content
 			.row
 				.col-md-12
-					.box
+					.box.box-primary
 						.box-body
-							= render 'frames/whites/create_form'
-					.box
+							= render 'frames/whites/create_white_form'
+			.row
+				.col-md-12
+					.box.box-info
 						.box-body
-							= render 'frames/whites/index_table'
+							= render 'frames/whites/index_white_table'

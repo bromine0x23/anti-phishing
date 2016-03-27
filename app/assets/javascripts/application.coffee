@@ -15,6 +15,5 @@
 #= require turbolinks
 #= require bootstrap
 #= require admin-lte.js
-do ($ = jQuery) ->
-	$document = $(document)
-	# $('[data-toggle="modal" data-remote="true"]')
+# do ($ = jQuery) ->
+	# $document = $(document)

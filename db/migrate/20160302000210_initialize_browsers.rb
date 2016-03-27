@@ -1,7 +1,6 @@
 class InitializeBrowsers < ActiveRecord::Migration
 	def up
 		Browser.create([
-			{ code: 'other', name: '其它' },
 			{ code: 'IE', name: 'IE浏览器' },
 			{ code: 'Firefox', name: '火狐浏览器' },
 			{ code: 'Chrome', name: '谷歌浏览器' },

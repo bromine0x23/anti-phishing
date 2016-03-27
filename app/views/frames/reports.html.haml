@@ -1,15 +1,27 @@
-= render 'frames/reports/create_modal'
-= render 'frames/reports/show_modal'
 .wrapper
 	.content-wrapper
+		%section.content-header
+			%h1
+				= translate 'index.index.sidebar.report'
 		%section.content
 			.row
 				.col-md-12
-					.box
+					.box.box-primary
 						.box-body
 							.progress
-								#progress-bar.progress-bar.progress-bar-warning.progress-bar-striped.active{ role: 'progressbar', 'aria-valuenow': 120, 'aria-valuemin': 0, 'aria-valuemax': 120 }
-							= render 'frames/reports/index_form'
-					.box
+								#index-report-progress-bar.progress-bar.progress-bar-warning.progress-bar-striped.active{ role: 'progressbar', aria: { valuenow: 120, valuemin: 0, valuemax: 120 }, data: { format: translate('frames.reports.prograss_text') } }
+							= render 'frames/reports/index_report_form'
+			.row
+				.col-md-12
+					.box.box-info
+						.box-header.with-border
+							%h3.box-title
+								= translate 'frames.reports.index_result'
+							.box-tools.pull-right
+								%button.btn.btn-box-tool{data: { widget: 'collapse'} }
+									%span.fa.fa-minus
 						.box-body
-							= render 'frames/reports/index_table'
+							= render 'frames/reports/index_report_table'
+= render 'frames/reports/create_report_modal'
+= render 'frames/reports/show_report_modal'
+= render 'frames/reports/create_screenshot_modal'

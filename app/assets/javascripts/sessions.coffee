@@ -1,10 +1,12 @@
-#= require toastr
-do ($ = jQuery) -> $ ->
-	toastr.options.positionClass = 'toast-top-center'
-	toastr.options.newestOnTop = true
-	toastr.options.progressBar = true
-	$('#create-form').on 'ajax:success', (event, data, status, xhr) ->
-		if (data.status)
-			window.location.href = '/'
+#= require helper/_bootbox
+do ($ = jQuery, bootbox) -> $ ->
+	$('#create-session-form').on 'ajax:success', (event, data, status, xhr) ->
+		if data.status
+			window.location.href = $('#submit-success').attr('href')
 		else
-			toastr.error(data.message)
+			bootbox.alert
+				message: data.message
+				size: 'small'
+				buttons:
+					ok:
+						className: 'btn-danger'

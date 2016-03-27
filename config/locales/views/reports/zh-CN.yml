@@ -1,0 +1,18 @@
+zh-CN:
+  reports:
+    create:
+      success: '录入成功'
+      failed: '录入失败：%s'
+    confirm:
+      success: '申报成功'
+      failed: '申报失败：%s'
+    ignore:
+      success: '已设置为误报'
+      failed: '设置误报失败：%s'
+    show:
+      detail: '详情'
+      confirm_report_btn: '申报关闭'
+      ignore_report_btn: '误报'
+      create_screenshot_btn: '重载图片'
+      update_screenshot_btn: '重载图片'
+      time_format: '%Y年%b%d日 %A %H:%M:%S %Z'

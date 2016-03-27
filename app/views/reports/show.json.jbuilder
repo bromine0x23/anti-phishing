@@ -1,0 +1,13 @@
+json.id @report.id
+json.url @report.url
+json.found_time @report.found_time
+json.report_time @report.report_time
+json.loss @report.loss
+json.region @report.region
+json.origin @report.origin.name
+json.way @report.way.name
+json.system @report.system.name
+json.browser @report.browser.name
+json.screenshot_url report_screenshot_url(@report)
+json.reported_url report_reported_url(@report)
+json.false_url report_false_url(@report)

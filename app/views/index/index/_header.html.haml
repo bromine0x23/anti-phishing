@@ -1,26 +1,25 @@
 %header.main-header
 	%a.logo{ href: '#' }
 		%span.logo-mini
-			= image_tag 'logo.svg', class: 'brand-logo', alt: '招商银行'
+			= image_tag 'logo.svg', class: 'brand-logo', alt: translate('cmb')
 		%span.logo-lg
-			= image_tag 'logo.svg', class: 'brand-logo', alt: '招商银行'
-			反钓鱼平台
+			= image_tag 'logo.svg', class: 'brand-logo', alt: translate('cmb')
+			= translate 'product'
 	%nav.navbar.navbar-static-top{ role: 'navigation' }
 		%a.sidebar-toggle{ href: '#', role: 'button', data: { toggle: 'offcanvas' } }
-			%span.sr-only
-				收展导航条
+			%span.sr-only= translate 'index.index.header.sidebar_toggle'
 		.navbar-custom-menu
 			%ul.nav.navbar-nav
 				%li
 					%a{ href: '#' }
 						%span.fa.fa-user
-						= @user.username
+							= @user.username
 				%li
 					- if can? :work, User
 						%a{ href: '#' }
 							%span.fa.fa-toggle-up
-							值班
+								= translate 'index.index.header.work'
 				%li
 					= link_to sessions_url, method: 'delete' do
 						%span.fa.fa-sign-out
-						登出
+							= translate 'index.index.header.logout'

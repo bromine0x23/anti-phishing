@@ -20,8 +20,6 @@
 class User < ActiveRecord::Base
 	has_many :user_roles, dependent: :destroy
 	has_many :roles, through: :user_roles
-	has_many :role_permissions, through: :roles
-	has_many :permissions, through: :role_permissions
 
 	def staff?
 		roles.any? { |role| role.code == 'staff' }

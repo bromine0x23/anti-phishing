@@ -7,7 +7,6 @@ class ScreenshotsController < ApplicationController
 	end
 
 	def update
-		result = ScreenshotJob.perform_now Report.find(params[:report_id])
-		render json: result
+		render json: ScreenshotJob.perform_now(Report.find(params[:report_id]))
 	end
 end

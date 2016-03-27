@@ -1,14 +1,15 @@
 #= require helper/_moment
 #= require bootstrap3-datetimepicker
 do ($ = jQuery) -> $ ->
-	$('.date').datetimepicker
+	$('.date-time-picker').datetimepicker
 		locale: 'zh-cn'
-		format: 'YYYY-MM-DD HH:mm:ss'
 		dayViewHeaderFormat: 'YYYY MMMM'
 		showClear: true
-	$('.date[data-current="max"]').each (index, element) ->
+	$('.date-time-picker[data-current="max"]').each (index, element) ->
 		$(element).data('DateTimePicker').useCurrent(false).maxDate(moment())
-	$('.date[data-min^="#"]').on 'dp.change', (event) ->
-		$($(this).data('min')).data('DateTimePicker').minDate(event.date)
-	$('.date[data-max^="#"]').on 'dp.change', (event) ->
-		$($(this).data('max')).data('DateTimePicker').maxDate(event.date || moment())
+	$('.date-time-picker[data-min^="#"]').each (index, element) ->
+		$($(element).data('min')).on 'dp.change', (event) =>
+			$(@).data('DateTimePicker').minDate(event.date)
+	$('.date-time-picker[data-max^="#"]').each (index, element) ->
+		$($(element).data('max')).on 'dp.change', (event) =>
+			$(@).data('DateTimePicker').maxDate(event.date || moment())

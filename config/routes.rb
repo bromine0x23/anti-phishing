@@ -12,8 +12,10 @@ Rails.application.routes.draw do
 
 	resource :sessions, only: %i(create new destroy)
 
-	resources :reports, except: :destroy do
+	resources :reports, except: %i(destroy update) do
 		resource :screenshot, only: %i(create new show update)
+		post :confirm
+		post :ignore
 	end
 
 	resources :whites, except: :update

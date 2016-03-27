@@ -1,5 +1,0 @@
-en:
-  reports:
-    create:
-      success: 'Entry success.'
-      failed: 'Entry failed.'

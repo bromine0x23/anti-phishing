@@ -1,9 +1,8 @@
 if @report.save
-	ScreenshotJob.perform_later report
 	json.status true
-	json.message translate('.success')
+	json.message translate('reports.create.success')
 	response.status = :created
 else
 	json.status false
-	json.message translate('.failed')
+	json.message translate('reports.create.failed') % @report.errors.messages.values.first.first
 end

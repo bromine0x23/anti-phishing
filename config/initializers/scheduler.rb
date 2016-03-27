@@ -6,6 +6,10 @@ require 'rufus-scheduler'
 scheduler = Rufus::Scheduler.singleton
 
 # TODO: remove me
-scheduler.every '2m' do
+scheduler.every '1m' do
 	Rails.logger.info "hello, it's #{Time.now}"
 end
+
+#scheduler.every '1m' do
+#	ReceiveCncertMailJob.perform_later
+#end

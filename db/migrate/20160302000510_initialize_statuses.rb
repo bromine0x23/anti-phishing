@@ -6,7 +6,7 @@ class InitializeStatuses < ActiveRecord::Migration
 			{ code: 'accepted', name: '已受理', remark: 'CNCERT' },
 			{ code: 'rejected', name: '未受理', remark: 'CNCERT' },
 			{ code: 'closed', name: '已处理', remark: 'CNCERT' },
-			{ code: 'false', name: '误报' },
+			{ code: 'fault', name: '误报' },
 		])
 	end
 
