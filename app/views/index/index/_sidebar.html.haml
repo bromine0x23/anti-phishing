@@ -2,23 +2,17 @@
 	%section.sidebar
 		%ul.sidebar-menu
 			- if can? :read, Report
-				%li
+				%li.default
 					= link_to reports_frame_url, target: 'main', class: 'nav-item' do
 						%i.fa.fa-desktop
 						%span
-							= translate 'index.index.sidebar.report'
-			- if can? :check, Report
-				%li
-					%a.nav-item{ href: '#',  target: 'main' }
-						%i.fa.fa-bar-chart
-						%span
-							= translate 'index.index.sidebar.chart'
+							= translate 'index.index.sidebar.reports'
 			- if can? :manage, White
 				%li
 					%a.nav-item{ href: whites_frame_url,  target: 'main' }
 						%i.fa.fa-list-ul
 						%span
-							= translate 'index.index.sidebar.white'
+							= translate 'index.index.sidebar.whites'
 			%li.treeview
 				%a.dropdown-toggle{ role: 'button', data: { toggle: 'dropdown' }, aria: { haspopup: true, expanded: false } }
 					%i.fa.fa-gear
@@ -29,8 +23,8 @@
 					- if can? :manage, User
 						%li
 							%a.nav-item{ href: users_frame_url, target: 'main' }
-								= translate 'index.index.sidebar.user'
-					- if can? :manage, Role
+								= translate 'index.index.sidebar.users'
+					-# if can? :manage, Role
 						%li
 							%a.nav-item{ href: '#', target:'main' }
-								= translate 'index.index.sidebar.role'
+								= translate 'index.index.sidebar.roles'

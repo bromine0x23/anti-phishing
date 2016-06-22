@@ -7,6 +7,7 @@ class SessionsController < ApplicationController
 	def create
 		parameters = params.require(:session)
 		@user = User.find_by(username: parameters[:username], password: Digest::SHA512.hexdigest(parameters[:password]))
+		reset_session
 		session[:user] = @user
 	end
 

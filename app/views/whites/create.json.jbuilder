@@ -1,6 +1,6 @@
 if @white.save
 	json.status true
-	json.message translate('.success')
+	json.message translate('whites.create.success')
 	response.status = :created
 else
 	json.status false

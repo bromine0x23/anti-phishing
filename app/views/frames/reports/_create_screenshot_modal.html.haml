@@ -1,13 +1,13 @@
 #create-screenshot-modal.modal.fade{ role: 'dialog', aria: { labelledby: 'create-screenshot-modal-label' }, tabindex: -1 }
 	.modal-dialog{ role: 'document' }
 		.modal-content
-			= form_for :create, method: :post, html: { id: 'create-screenshot-form', class: 'form-vertical' } do |form|
+			-#= simple_form_for :'screenshot[create]', method: :post, remote: true, wrapper: 'vertical_form' do |form|
 				.modal-header
-					%button.close{ type: 'button', data: { dismiss: 'modal' }, aria: { label: '关闭' } }
+					%button.close{ type: 'button', data: { dismiss: 'modal' }, aria: { label: translate('modal.close') } }
 						%span.fa.fa-times
-					%h4#create-screenshot-modal-label.modal-title
+					%h4#show-report-modal-label.modal-title
 						%span.fa.fa-upload
-						上传图片
+							= translate('screenshots.create.title')
 				.modal-body
 					.row
 						.col-md-12.form-group
@@ -16,6 +16,6 @@
 							= form.file_field :screenshot, class: 'form-control', required: true
 				.modal-footer
 					%button.btn.btn-default{ type: 'button', data: { dismiss: 'modal' } }
-						关闭
+						= translate('modal.close')
 					%button.btn.btn-primary{ type: 'submit' }
-						上传
+						= translate('screenshots.create.submit')

@@ -1,5 +1,6 @@
 - screenshot_url = report_screenshot_url(@report)
-= simple_form_for @report, wrapper: 'vertical_form', defaults: { required: false } do |form|
+- new_screenshot_url = new_report_screenshot_url(@report)
+= simple_form_for @report, wrapper: 'vertical_form', remote: true, defaults: { required: false, readonly: true, disabled: true }, html: { class: 'edit-report' } do |form|
 	.modal-header
 		%button.close{ type: 'button', data: { dismiss: 'modal' }, aria: { label: translate('modal.close') } }
 			%span.fa.fa-times
@@ -12,52 +13,60 @@
 			.col-md-4
 				.row
 					.col-md-12
-						= form.input :url, readonly: true
+						= form.input :url, required: true, readonly: !can?(:update, Report), disabled: false
 				.row
 					.col-md-12
 						- value = @report.found_time
-						= form.input :found_time, as: :string, readonly: true, input_html: { value: I18n.localize(value, format: :long) }
+						= form.input :found_time, as: :string, input_html: { value: I18n.localize(value, format: :long) }
 				.row
 					.col-md-12
 						- value = @report.found_time
-						= form.input :report_time, as: :string, readonly: true, input_html: { value: I18n.localize(value, format: :long) }
+						= form.input :report_time, as: :string, input_html: { value: I18n.localize(value, format: :long) }
 				.row
 					.col-md-6
-						= form.input :loss, readonly: true
+						= form.input :loss
 					.col-md-6
-						= form.input :region, readonly: true
+						= form.input :region
 				.row
 					.col-md-6
 						= form.simple_fields_for :origin do |fields|
-							= fields.input :name, readonly: true
+							= fields.input :name
 					.col-md-6
 						= form.simple_fields_for :way, @report.way || Way.new do |fields|
-							= fields.input :name, readonly: true
+							= fields.input :name
 				.row
 					.col-md-6
 						= form.simple_fields_for :system, @report.system || System.new do |fields|
-							= fields.input :name, readonly: true
+							= fields.input :name
 					.col-md-6
 						= form.simple_fields_for :browser, @report.browser || Browser.new do |fields|
-							= fields.input :name, readonly: true
+							= fields.input :name
 				.row
 					.col-md-6
 						= form.simple_fields_for :disposer do |fields|
-							= fields.input :name, readonly: true
+							= fields.input :name
 					.col-md-6
 						= form.simple_fields_for :status do |fields|
-							= fields.input :name, readonly: true
+							= fields.input :name
 			.col-md-8
-				= image_tag screenshot_url, id: 'show-screenshot', class: 'img-responsive img-thumbnail'
+				.zoom
+					= image_tag screenshot_url, id: 'show-screenshot', class: 'img-responsive img-thumbnail'
 	.modal-footer
 		- if @report.status.pending?
-			= link_to report_confirm_url(@report), method: :post, remote: true, class: 'confirm-report-btn btn btn-primary', role: 'button' do
-				= translate 'reports.show.confirm_report_btn'
-			= link_to report_ignore_url(@report), method: :post, remote: true, class: 'ignore-report-btn btn btn-danger', role: 'button' do
-				= translate 'reports.show.ignore_report_btn'
-			= link_to screenshot_url, method: :put, remote: true, id: 'update-screenshot-btn', class: 'btn btn-warning', role: 'button' do
-				= translate 'reports.show.update_screenshot_btn'
-			%a#create-screenshot-btn.btn.btn-warning{ role: 'button', href: new_report_screenshot_url(@report), data: { toggle: 'modal', target: '#create-screenshot-modal', url: screenshot_url } }
-				= translate 'reports.show.create_screenshot_btn'
+			- if can? :update, Report
+				%button.btn.btn-warning{ type: 'submit', data: { method: :put } }
+					= translate 'reports.show.update_report_url_btn'
+			- if can? :confirm, Report
+				= link_to report_confirm_url(@report), method: :post, remote: true, class: 'confirm-report-btn btn btn-primary', role: 'button' do
+					= translate 'reports.show.confirm_report_btn'
+			- if can? :ignore, Report
+				= link_to report_ignore_url(@report), method: :post, remote: true, class: 'ignore-report-btn btn btn-danger', role: 'button' do
+					= translate 'reports.show.ignore_report_btn'
+			- if can? :create, Report::Screenshot
+				%a#create-screenshot-btn.btn.btn-warning{ role: 'button', data: { toggle: 'modal', target: '#create-screenshot-modal', href: new_screenshot_url } }
+					= translate 'reports.show.create_screenshot_btn'
+			- if can? :update, Report::Screenshot
+				= link_to screenshot_url, method: :put, remote: true, id: 'update-screenshot-btn', class: 'btn btn-warning', role: 'button' do
+					= translate 'reports.show.update_screenshot_btn'
 		%button.btn.btn-default{ type: 'button', data: { dismiss: 'modal' } }
 			= translate 'modal.close'

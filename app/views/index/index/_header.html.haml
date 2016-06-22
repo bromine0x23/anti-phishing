@@ -7,7 +7,7 @@
 			= translate 'product'
 	%nav.navbar.navbar-static-top{ role: 'navigation' }
 		%a.sidebar-toggle{ href: '#', role: 'button', data: { toggle: 'offcanvas' } }
-			%span.sr-only= translate 'index.index.header.sidebar_toggle'
+			%span.sr-only= translate 'index.index.sidebar.toggle'
 		.navbar-custom-menu
 			%ul.nav.navbar-nav
 				%li
@@ -20,6 +20,6 @@
 							%span.fa.fa-toggle-up
 								= translate 'index.index.header.work'
 				%li
-					= link_to sessions_url, method: 'delete' do
+					= link_to session_url, method: 'delete' do
 						%span.fa.fa-sign-out
-							= translate 'index.index.header.logout'
+							= translate 'button.logout'

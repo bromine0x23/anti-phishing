@@ -30,7 +30,7 @@ module AntiPhishing
 
 		config.active_job.queue_adapter = :sucker_punch
 
-		config.action_mailer.update! config_for(:mailer)
+		config.action_mailer.update config_for(:mailer)
 
 
 	end

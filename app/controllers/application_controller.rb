@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
 	end
 
 	def login_url
-		new_sessions_url
+		new_session_url
 	end
 
 	def current_user
@@ -29,7 +29,7 @@ class ApplicationController < ActionController::Base
 	end
 
 	def require_login
-		unless session[:user]
+		unless current_user
 			if request.xhr?
 				head :forbidden
 			else

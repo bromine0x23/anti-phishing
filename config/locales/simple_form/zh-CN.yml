@@ -67,7 +67,8 @@ zh-CN:
           status_id: '请选择状态'
           origin_id: '请选择来源'
       white:
-        url: 'URL: xxx.yyy.zzz'
+        create:
+          url: 'URL: xxx.yyy.zzz'
     # Examples
     # labels:
     #   defaults:

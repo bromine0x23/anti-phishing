@@ -4,7 +4,9 @@
 #= require helper/_iCheck
 #= require helper/_select2
 #= require helper/multi-modal
+#= require jquery-zoom
 do ($ = jQuery) -> $ ->
+
 	delay_ms = 200
 	delay_s = delay_ms / 1000
 	current = interval = $('#index-report-progress-bar').attr('aria-valuemax')
@@ -91,11 +93,33 @@ do ($ = jQuery) -> $ ->
 
 	$('#show-report-modal').on 'show.bs.modal', (event) ->
 		content = $(event.currentTarget).find('.modal-content')
-		content.load $(event.relatedTarget).data('href'), (text, status,xhr) ->
+		content.load $(event.relatedTarget).data('href'), (text, status, xhr) ->
 			screenshot = @find('#show-screenshot')
+			screenshot.parent('.zoom').zoom()
 			screenshot.data('url', screenshot.attr('src'))
 	$(document).on 'ajax:success', '#update-screenshot-btn', (event, data, status, xhr) ->
 		$('#show-screenshot').attr('src', "#{$('#show-screenshot').data('url')}?#{$.param t: Date.now()}")
+
+	$('#create-screenshot-modal').on 'show.bs.modal', (event) ->
+		content = $(event.currentTarget).find('.modal-content')
+		content.load $(event.relatedTarget).data('href')
+	$(document).on 'ajax:success', '#create_screenshot', (event, data, status, xhr) ->
+		if data.status
+			$('#create-screenshot-modal').modal('hide')
+			bootbox.alert
+				message: data.message
+				size: 'small'
+				buttons:
+					ok:
+						className: 'btn-success'
+			$('#show-screenshot').attr('src', "#{$('#show-screenshot').data('url')}?#{$.param t: Date.now()}")
+		else
+			bootbox.alert
+				message: data.message
+				size: 'small'
+				buttons:
+					ok:
+						className: 'btn-danger'
 
 	$('#index-report-form').on 'ajax:success', (event, data, status, xhr) ->
 		$('#index-report-table').DataTable
@@ -151,8 +175,7 @@ do ($ = jQuery) -> $ ->
 		$select.children('.dropdown-toggle').dropdown('toggle')
 	$('.input-group-addon-select .dropdown-menu .dropdown-item:first-child').click()
 
-	$(document).on 'ajax:success', '.confirm-report-btn,.ignore-report-btn', (event, data, status, xhr) ->
-		console.log(@, arguments)
+	$(document).on 'ajax:success', '.edit-report,.confirm-report-btn,.ignore-report-btn', (event, data, status, xhr) ->
 		if data.status
 			$('#show-report-modal').modal('hide')
 			bootbox.alert
@@ -169,3 +192,4 @@ do ($ = jQuery) -> $ ->
 				buttons:
 					ok:
 						className: 'btn-danger'
+		event.stopPropagation()

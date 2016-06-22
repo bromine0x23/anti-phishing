@@ -5,11 +5,14 @@ require 'rufus-scheduler'
 
 scheduler = Rufus::Scheduler.singleton
 
-# TODO: remove me
-scheduler.every '1m' do
-	Rails.logger.info "hello, it's #{Time.now}"
+scheduler.every '2m' do
+	FetchFromTencentJob.perform_now
 end
 
-#scheduler.every '1m' do
-#	ReceiveCncertMailJob.perform_later
-#end
+scheduler.every '2m' do
+	FetchFromBaiduJob.perform_now
+end
+
+# scheduler.every '1m' do
+# 	ReceiveCncertMailJob.perform_later
+# end

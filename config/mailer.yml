@@ -1,11 +1,11 @@
 default: &default
   :delivery_method: :smtp
   :smtp_settings:
-    :address: 'smtp.126.com'
+    :address: 'smtp.cmb.com'
     :port: 25
-    :domain: '126.com'
-    :user_name: 'bromine@126.com'
-    :password: 'bromine0x23'
+    :domain: 'cmb.com'
+    :user_name: 'anti-phishing@cmb.com'
+    :password: ''
     :authentication: 'login'
     :enable_starttls_auto: true
 

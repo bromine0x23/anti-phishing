@@ -10,15 +10,14 @@ Rails.application.routes.draw do
 		get 'users'
 	end
 
-	resource :sessions, only: %i(create new destroy)
+	resource :session, only: %i(create new destroy)
 
-	resources :reports, except: %i(destroy update) do
+	resources :reports, only: %i(create index show update) do
 		resource :screenshot, only: %i(create new show update)
 		post :confirm
 		post :ignore
 	end
 
-	resources :whites, except: :update
-
-	resources :origins, only: :index
+	resources :whites, except: %i(show update)
+	resources :users, only: %i(index create destroy)
 end

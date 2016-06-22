@@ -14,6 +14,7 @@
 #= require jquery_ujs
 #= require turbolinks
 #= require bootstrap
-#= require admin-lte.js
+#= require admin-lte
+#= require jquery.remotipart
 # do ($ = jQuery) ->
 	# $document = $(document)

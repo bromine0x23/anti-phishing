@@ -1,0 +1,16 @@
+.wrapper
+	.content-wrapper
+		%section.content-header
+			%h1
+				= translate 'index.index.sidebar.users'
+		%section.content
+			.row
+				.col-md-12
+					.box.box-primary
+						.box-body
+							= render 'frames/users/toolbar'
+			.row
+				.col-md-12
+					.box.box-info
+						.box-body
+							= render 'frames/users/display'

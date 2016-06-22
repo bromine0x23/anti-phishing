@@ -2,15 +2,15 @@
 	.content-wrapper
 		%section.content-header
 			%h1
-				白名单
+				= translate 'index.index.sidebar.whites'
 		%section.content
 			.row
 				.col-md-12
 					.box.box-primary
 						.box-body
-							= render 'frames/whites/create_white_form'
+							= render 'frames/whites/toolbar'
 			.row
 				.col-md-12
 					.box.box-info
 						.box-body
-							= render 'frames/whites/index_white_table'
+							= render 'frames/whites/display'

@@ -1,3 +1,4 @@
+
 Mailman.config.poll_interval = 0
 Mailman.config.imap = {
 	server: 'imap.126.com',

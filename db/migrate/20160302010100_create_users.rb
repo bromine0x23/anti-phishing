@@ -6,6 +6,7 @@ class CreateUsers < ActiveRecord::Migration
 			t.string :name, comment: '姓名'
 			t.string :telephone, comment: '电话'
 			t.string :email, comment: '邮箱'
+			t.references :role, foreign_key: true, null: false, comment: '角色引用'
 			t.boolean :on_duty, null: false, default: false, comment: '是否值班'
 			t.timestamps null: false
 		end

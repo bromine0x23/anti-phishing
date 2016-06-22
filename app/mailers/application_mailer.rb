@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-	default from: 'anti-phishing@famessoft.com'
+	default from: 'anti-phishing@cmb.com'
 	layout 'mailer'
 end

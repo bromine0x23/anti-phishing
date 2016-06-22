@@ -14,17 +14,25 @@ zh-CN:
         name: '浏览器'
       status:
         name: '状态'
+      role:
+        name: '角色'
       disposer:
         name: '负责人'
       report:
         url: 'URL'
         loss: '损失金额'
         region: '所在地区'
+        origin: '来源'
         origin_id: '来源'
+        way: '传播途径'
         way_id: '传播途径'
+        system: '操作系统'
         system_id: '操作系统'
+        browser: '浏览器'
         browser_id: '浏览器'
+        disposer: '负责人'
         disposer_id: '负责人'
+        status: '状态'
         status_id: '状态'
         found_time: '发现时间'
         report_time: '报告时间'
@@ -33,7 +41,16 @@ zh-CN:
         screenshot: '截图'
       white:
         url: 'URL'
+        disposer: '处理人'
         disposer_id: '处理人'
+        created_at: '添加时间'
+      user:
+        username: '用户名'
+        name: '姓名'
+        role: '角色'
+        role_id: '角色'
+        telephone: '电话'
+        email: '邮箱'
     errors:
       models:
         report:

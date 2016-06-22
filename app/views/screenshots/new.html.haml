@@ -1,0 +1,16 @@
+= simple_form_for :report, url: report_screenshot_url(@report), method: :post, authenticity_token: true, remote: true, multipart: true, wrapper: :vertical_form, html: { id: 'create_screenshot' }, data: { type: :json } do |form|
+	.modal-header
+		%button.close{ type: 'button', data: { dismiss: 'modal' }, aria: { label: translate('modal.close') } }
+			%span.fa.fa-times
+		%h4#show-report-modal-label.modal-title
+			%span.fa.fa-upload
+				= translate('screenshots.new.title')
+	.modal-body
+		.row
+			.col-md-12.form-group
+				= form.file_field :screenshot, class: 'form-control', accept: 'image/jpeg,image/jpg,image/png,image/bmp,image/gif', required: true
+	.modal-footer
+		%button.btn.btn-default{ type: 'button', data: { dismiss: 'modal' } }
+			= translate('modal.close')
+		%button.btn.btn-primary{ type: 'submit' }
+			= translate('screenshots.new.submit')

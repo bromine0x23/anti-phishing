@@ -6,10 +6,10 @@ table_comments:
   roles: "角色"
   statuses: "处理状态"
   systems: "操作系统类型"
-  user_roles: "用户角色"
   users: "用户"
   ways: "传播方式"
   whites: "白名单"
+  user_roles: "用户角色"
 column_comments:
   browsers:
     code: "内部引用代码"
@@ -48,16 +48,13 @@ column_comments:
     code: "内部引用代码"
     name: "显示名字"
     id: "操作系统类型"
-  user_roles:
-    user_id: "用户引用"
-    role_id: "角色引用"
-    id: "用户角色"
   users:
     username: "用户名"
     password: "密码"
     name: "姓名"
     telephone: "电话"
     email: "邮箱"
+    role_id: "角色引用"
     on_duty: "是否值班"
     id: "用户"
   ways:
@@ -68,3 +65,7 @@ column_comments:
     url: "网址"
     disposer_id: "处理人"
     id: "白名单"
+  user_roles:
+    role_id: "角色引用"
+    user_id: "用户引用"
+    id: "用户角色"

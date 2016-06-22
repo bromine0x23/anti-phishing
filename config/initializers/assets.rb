@@ -9,7 +9,7 @@ Rails.application.config.assets.version = '1.0'
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
 Rails.application.config.assets.precompile += %w( sessions.css sessions.js index.css index.js frame.css frame.js )
-Rails.application.config.assets.precompile += %w( reports.css reports.js whites.css whites.js user.css user.js )
+Rails.application.config.assets.precompile += %w( reports.css reports.js whites.css whites.js users.css users.js )
 
 # Reject duplicate assets from Rails Assets
 Rails.application.config.assets.paths.reject! do |path|

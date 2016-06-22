@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class FetchFormTencentJobTest < ActiveJob::TestCase
+class FetchFromTencentJobTest < ActiveJob::TestCase
 	# test "the truth" do
 	#   assert true
 	# end

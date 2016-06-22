@@ -1,0 +1,8 @@
+zh-CN:
+  users:
+    create:
+      success: '添加成功'
+      failed: '添加失败：%s'
+    destroy:
+      success: '删除成功'
+      failed: '删除失败：%s'

@@ -2,23 +2,24 @@
 #
 # Table name: reports
 #
-#  id           :integer          not null, primary key
-#  url          :string(255)      not null
-#  loss         :string(255)      default("0")
-#  region       :string(255)
-#  origin_id    :integer          not null
-#  way_id       :integer
-#  system_id    :integer
-#  browser_id   :integer
-#  disposer_id  :integer
-#  status_id    :integer          default(1), not null
-#  found_time   :datetime         not null
-#  report_time  :datetime         not null
-#  dispose_time :datetime
-#  finish_time  :datetime
-#  screenshot   :binary(16777215)
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
+#  id              :integer          not null, primary key
+#  url             :string(255)      not null
+#  loss            :string(255)      default("0")
+#  region          :string(255)
+#  origin_id       :integer          not null
+#  way_id          :integer
+#  system_id       :integer
+#  browser_id      :integer
+#  disposer_id     :integer
+#  status_id       :integer          default(1), not null
+#  found_time      :datetime         not null
+#  report_time     :datetime         not null
+#  dispose_time    :datetime
+#  finish_time     :datetime
+#  screenshot      :binary(16777215)
+#  screenshot_type :string(255)
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
 #
 # Indexes
 #
@@ -38,9 +39,12 @@
 #  fk_rails_c44b45b8f2  (origin_id => origins.id)
 #  fk_rails_c8ae57fdf1  (browser_id => browsers.id)
 #
+
 require 'uri'
 
 class Report < ActiveRecord::Base
+	class Screenshot
+	end
 
 	belongs_to :status
 	belongs_to :origin
@@ -49,7 +53,7 @@ class Report < ActiveRecord::Base
 	belongs_to :browser
 	belongs_to :disposer, class_name: 'User'
 
-	attr_readonly :url, :origin, :way, :system, :browser, :disposer
+	attr_readonly :origin, :way, :system, :browser, :disposer
 
 	accepts_nested_attributes_for :origin
 	accepts_nested_attributes_for :way
@@ -77,6 +81,9 @@ class Report < ActiveRecord::Base
 		report.validates :url, url: true
 		report.validate :url_is_not_duplicate, on: :create
 		report.validate :url_is_not_white
+	end
+	with_options if: 'screenshot.present?' do |report|
+		report.validates :screenshot_type, presence: true
 	end
 
 	# 创建后执行截图任务

@@ -3,4 +3,5 @@
 IMGKit.configure do |config|
 	# Set WKHTMLTOIMAGE path
 	config.wkhtmltoimage = "#{ENV['WKHTMLTOPDF_HOME']}/bin/wkhtmltoimage.exe"
+	config.default_format = :jpg
 end

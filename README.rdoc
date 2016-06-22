@@ -1,28 +1,30 @@
-== README
+# README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## 需求
+* Ruby 2.0.0 +
+* MySQL 5.6 +
+* wkhtmltopdf
 
-Things you may want to cover:
+## 安装
 
-* Ruby version
+安装Bundler（如果未安装）
+```bash
+$ gem install bundler
+```
 
-* System dependencies
+配置应用依赖
+```bash
+$ bundle install
+```
 
-* Configuration
+初始化数据库
 
-* Database creation
+执行迁移
+```bash
+$ rake db:migrate
+```
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+启动服务器
+```bash
+$ rails server
+```

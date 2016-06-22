@@ -1,4 +1,8 @@
 zh-CN:
   screenshots:
     create:
-      upload: '上传截图'
+      success: '上传成功'
+      failed: '上传失败：%s'
+    new:
+      title: '上传截图'
+      submit: '上传'

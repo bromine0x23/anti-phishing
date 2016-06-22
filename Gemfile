@@ -1,6 +1,4 @@
-# source 'https://rubygems.org/'
-source 'http://gems.ruby-china.org/'
-
+source 'https://rubygems.org/'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 4.2'
@@ -8,7 +6,7 @@ gem 'rails', '~> 4.2'
 gem 'mysql2', '>= 0.3.13', '< 0.5'
 # Use Haml for HTML
 gem 'haml-rails'
-# gem 'hamlit-rails'
+# gem 'hamlit-rails'gem install mysql2
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
@@ -28,11 +26,10 @@ gem 'jbuilder', '~> 2.4'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4', group: :doc
 
-# Run ActiveJob
-gem 'rufus-scheduler', '~> 3.2'
-
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
+
+gem 'sprockets-es6'
 
 gem 'puma'
 
@@ -57,6 +54,9 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
+# 定时任务
+gem 'rufus-scheduler', '~> 3.2'
+
 # ActiveJob backend
 gem 'sucker_punch', '~> 2.0'
 
@@ -67,8 +67,9 @@ gem 'mini_magick'
 # Permission
 gem 'cancan'
 
-#
+# 模型类注解
 gem 'annotate'
+
 gem 'schema_comments'
 
 # Better Form Builder
@@ -77,17 +78,19 @@ gem 'simple_form'
 # Receive mail
 gem 'mailman'
 
+gem 'remotipart', '~> 1.2'
+
 # assets
 gem 'bootstrap-sass', '~> 3.3'
 gem 'font-awesome-sass', '~> 4.5'
 gem 'jquery-datatables-rails', '~> 3.3'
 
-source 'http://rails-assets.org' do
+source 'https://rails-assets.org' do
 	gem 'rails-assets-bootbox'
 	gem 'rails-assets-bootstrap3-datetimepicker'
-	gem 'rails-assets-echarts', '~> 3.0.0'
 	gem 'rails-assets-iframe-resizer'
 	gem 'rails-assets-iCheck'
+	gem 'rails-assets-jquery-zoom'
 	gem 'rails-assets-moment'
 	gem 'rails-assets-moment-timezone'
 	gem 'rails-assets-select2'

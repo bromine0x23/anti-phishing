@@ -3,6 +3,9 @@ zh-CN:
     create:
       success: '录入成功'
       failed: '录入失败：%s'
+    update:
+      success: '修改成功'
+      failed: '修改失败：%s'
     confirm:
       success: '申报成功'
       failed: '申报失败：%s'
@@ -11,8 +14,9 @@ zh-CN:
       failed: '设置误报失败：%s'
     show:
       detail: '详情'
+      update_report_url_btn: '修改URL'
       confirm_report_btn: '申报关闭'
       ignore_report_btn: '误报'
-      create_screenshot_btn: '重载图片'
-      update_screenshot_btn: '重载图片'
+      create_screenshot_btn: '上传截图'
+      update_screenshot_btn: '重载截图'
       time_format: '%Y年%b%d日 %A %H:%M:%S %Z'

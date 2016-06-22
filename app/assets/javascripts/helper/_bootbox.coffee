@@ -1,7 +1,10 @@
-#= require bootbox
+#= require bootbox.js
+initBootbox = (bootbox) ->
+	bootbox.setDefaults
+		locale: 'zh_CN'
 if @frameElement
-	@parent.bootbox = @bootbox unless @parent.bootbox
+	unless @parent.bootbox
+		initBootbox(@parent.bootbox = @bootbox)
 	@bootbox = @parent.bootbox
 else
-	@bootbox.setDefaults
-		locale: 'zh_CN'
+	initBootbox(@bootbox)

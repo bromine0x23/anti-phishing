@@ -6,12 +6,12 @@
 				%span.h3.align-middle
 					= translate 'product'
 			.panel-body
-				= simple_form_for :session, url: sessions_url, method: :post, remote: true, wrapper: :inline_form, html: { id: 'create-session-form' } do |form|
+				= simple_form_for :session, url: session_url, method: :post, remote: true, wrapper: :inline_form, html: { id: 'create-session-form' } do |form|
 					- username = Rails.env == 'development' ? 'administrator' : nil
 					= form.input :username, input_html: { value: username, autocomplete: 'off' }
 					- password = Rails.env == 'development' ? 'administrator' : nil
 					= form.input :password, input_html: { value: password, autocomplete: 'off' }
 					%button.btn.btn-block.btn-primary{ type: 'submit' }
-						= translate 'sessions.new.submit'
+						= translate 'button.login'
 				= link_to '', root_url, id: 'submit-success', class: 'hidden'
 = render 'sessions/new/footer'

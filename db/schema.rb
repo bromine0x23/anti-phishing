@@ -30,23 +30,24 @@ ActiveRecord::Schema.define(version: 20160302020100) do
   add_index "origins", ["code"], name: "index_origins_on_code", unique: true, using: :btree
 
   create_table "reports", :force => true, :comment => '报告' do |t|
-    #t.column "id",           "int(11)",                       :null => false, :comment => "AUTO_INCREMENT PRIMARY KEY by rails"
-    t.column "url",          "varchar(255)",                  :null => false, :comment => "钓鱼网站网址"
-    t.column "loss",         "varchar(255)", :default => "0",                 :comment => "损失"
-    t.column "region",       "varchar(255)",                                  :comment => ""
-    t.column "origin_id",    "int(11)",                       :null => false, :comment => "数据来源引用"
-    t.column "way_id",       "int(11)",                                       :comment => "传播方式引用"
-    t.column "system_id",    "int(11)",                                       :comment => "操作系统类型引用"
-    t.column "browser_id",   "int(11)",                                       :comment => "浏览器类型引用"
-    t.column "disposer_id",  "int(11)",                       :null => false, :comment => "处理人引用"
-    t.column "status_id",    "int(11)",      :default => 1,   :null => false, :comment => "状态引用"
-    t.column "found_time",   "datetime",                      :null => false, :comment => "发现时间"
-    t.column "report_time",  "datetime",                      :null => false, :comment => "报告时间"
-    t.column "dispose_time", "datetime",                                      :comment => "处理时间"
-    t.column "finish_time",  "datetime",                                      :comment => "结束时间"
-    t.column "screenshot",   "mediumblob",                                    :comment => "截图"
-    t.column "created_at",   "datetime",                      :null => false, :comment => ""
-    t.column "updated_at",   "datetime",                      :null => false, :comment => ""
+    #t.column "id",              "int(11)",                       :null => false, :comment => "AUTO_INCREMENT PRIMARY KEY by rails"
+    t.column "url",             "varchar(255)",                  :null => false, :comment => "钓鱼网站网址"
+    t.column "loss",            "varchar(255)", :default => "0",                 :comment => "损失"
+    t.column "region",          "varchar(255)",                                  :comment => ""
+    t.column "origin_id",       "int(11)",                       :null => false, :comment => "数据来源引用"
+    t.column "way_id",          "int(11)",                                       :comment => "传播方式引用"
+    t.column "system_id",       "int(11)",                                       :comment => "操作系统类型引用"
+    t.column "browser_id",      "int(11)",                                       :comment => "浏览器类型引用"
+    t.column "disposer_id",     "int(11)",                                       :comment => "处理人引用"
+    t.column "status_id",       "int(11)",      :default => 1,   :null => false, :comment => "状态引用"
+    t.column "found_time",      "datetime",                      :null => false, :comment => "发现时间"
+    t.column "report_time",     "datetime",                      :null => false, :comment => "报告时间"
+    t.column "dispose_time",    "datetime",                                      :comment => "处理时间"
+    t.column "finish_time",     "datetime",                                      :comment => "结束时间"
+    t.column "screenshot",      "mediumblob",                                    :comment => "截图"
+    t.column "screenshot_type", "varchar(255)",                                  :comment => ""
+    t.column "created_at",      "datetime",                      :null => false, :comment => ""
+    t.column "updated_at",      "datetime",                      :null => false, :comment => ""
   end
 
   add_index "reports", ["browser_id"], name: "fk_rails_c8ae57fdf1", using: :btree
@@ -83,17 +84,6 @@ ActiveRecord::Schema.define(version: 20160302020100) do
 
   add_index "systems", ["name"], name: "index_systems_on_name", unique: true, using: :btree
 
-  create_table "user_roles", :force => true, :comment => '用户角色' do |t|
-    #t.column "id",         "int(11)",  :null => false, :comment => "AUTO_INCREMENT PRIMARY KEY by rails"
-    t.column "user_id",    "int(11)",  :null => false, :comment => "用户引用"
-    t.column "role_id",    "int(11)",  :null => false, :comment => "角色引用"
-    t.column "created_at", "datetime", :null => false, :comment => ""
-    t.column "updated_at", "datetime", :null => false, :comment => ""
-  end
-
-  add_index "user_roles", ["role_id"], name: "fk_rails_3369e0d5fc", using: :btree
-  add_index "user_roles", ["user_id"], name: "fk_rails_318345354e", using: :btree
-
   create_table "users", :force => true, :comment => '用户' do |t|
     #t.column "id",         "int(11)",                         :null => false, :comment => "AUTO_INCREMENT PRIMARY KEY by rails"
     t.column "username",   "varchar(255)",                    :null => false, :comment => "用户名"
@@ -101,11 +91,13 @@ ActiveRecord::Schema.define(version: 20160302020100) do
     t.column "name",       "varchar(255)",                                    :comment => "姓名"
     t.column "telephone",  "varchar(255)",                                    :comment => "电话"
     t.column "email",      "varchar(255)",                                    :comment => "邮箱"
+    t.column "role_id",    "int(11)",                         :null => false, :comment => "角色引用"
     t.column "on_duty",    "tinyint(1)",   :default => false, :null => false, :comment => "是否值班"
     t.column "created_at", "datetime",                        :null => false, :comment => ""
     t.column "updated_at", "datetime",                        :null => false, :comment => ""
   end
 
+  add_index "users", ["role_id"], name: "fk_rails_642f17018b", using: :btree
   add_index "users", ["username", "password"], name: "index_users_on_username_and_password", unique: true, using: :btree
 
   create_table "ways", :force => true, :comment => '传播方式' do |t|
@@ -133,7 +125,6 @@ ActiveRecord::Schema.define(version: 20160302020100) do
   add_foreign_key "reports", "systems"
   add_foreign_key "reports", "users", column: "disposer_id"
   add_foreign_key "reports", "ways"
-  add_foreign_key "user_roles", "roles"
-  add_foreign_key "user_roles", "users"
+  add_foreign_key "users", "roles"
   add_foreign_key "whites", "users", column: "disposer_id"
 end

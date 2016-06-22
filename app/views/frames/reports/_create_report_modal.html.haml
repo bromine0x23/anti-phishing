@@ -3,7 +3,7 @@
 		.modal-content
 			= simple_form_for :'report[create]', url: reports_url, method: :post, remote: true, wrapper: :vertical_form, html: { id: 'create-form', class: 'form-vertical' }, defaults: { required: false } do |form|
 				.modal-header
-					%button.close{ type: 'button', data: { dismiss: 'modal' }, aria: { label: translate('modal.close') } }
+					%button.close{ type: 'button', data: { dismiss: 'modal' }, aria: { label: translate('button.close') } }
 						%span.fa.fa-times
 					%h4#create-report-modal-label.modal-title
 						%span.fa.fa-upload
@@ -30,8 +30,8 @@
 								= f.input :browser_id, collection: Browser.all
 				.modal-footer
 					%button.btn.btn-primary{ type: 'submit' }
-						= translate 'frames.reports.create.submit'
+						= translate 'button.submit'
 					%button.btn.btn-danger{ type: 'reset' }
-						= translate 'reset'
+						= translate 'button.reset'
 					%button.btn.btn-default{ type: 'button', data: { dismiss: 'modal' } }
-						= translate 'modal.close'
+						= translate 'button.close'

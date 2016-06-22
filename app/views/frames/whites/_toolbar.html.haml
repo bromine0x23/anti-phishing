@@ -1,0 +1,13 @@
+= simple_form_for :'white[create]', url: whites_url, method: :post, remote: true, wrapper: :inline_form, html: { id: 'create-white-form', class: 'form-inline' } do |form|
+	= form.input :url, as: :string, required: true, pattern: '(([-a-zA-Z0-9]|%[0-9A-Fa-f]{2})+\.)+([-a-zA-Z0-9]|%[0-9A-Fa-f]{2})+'
+	.form-group
+		%button#submit-btn.btn.btn-sm.btn-primary{ type: 'submit' }
+			%span.fa.fa-upload
+			= translate 'button.submit'
+		%button.btn.btn-sm.btn-warning{ type: 'reset' }
+			%span.fa.fa-times
+			= translate 'button.reset'
+	.form-group.pull-right
+		= link_to whites_url, method: :get, remote: true, id: 'refresh-btn', class: 'btn btn-sm btn-info', role: 'button' do
+			%span.fa.fa-refresh
+			= translate 'button.refresh'

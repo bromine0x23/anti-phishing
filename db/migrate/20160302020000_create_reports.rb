@@ -23,6 +23,7 @@ class CreateReports < ActiveRecord::Migration
 			t.timestamp :finish_time, comment: '结束时间'
 
 			t.binary :screenshot, limit: 1.megabyte, comment: '截图'
+			t.string :screenshot_type
 
 			t.timestamps null: false
 		end
